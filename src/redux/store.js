@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import studentSlice from './studentSlice';
+import shopSlice from './shopSlice';
 
 
 const store=configureStore({
     reducer:{
-        
-        student:studentSlice
+
+        shop:shopSlice
     }
 })
 export default store
