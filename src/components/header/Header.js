@@ -3,7 +3,6 @@ import {
   Collapse,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
   NavItem,
   NavLink,
@@ -14,19 +13,22 @@ import {
   NavbarText,
   Container,
 } from "reactstrap";
-import "./header.css";
-import logo from "../../resources/logo.png";
 import { Link } from "react-router-dom";
+import logo from "../../resources/logo.png";
+import "./header.css";
+
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
+
   return (
     <div className="header">
       <Container>
-        <Navbar className=" navbar-expand-md">
-          <img className="logo" src={logo} />
-          {/* <NavbarBrand className="Brand_nostyle"  href="/">Furniture Corner</NavbarBrand> */}
+        <Navbar className="navbar-expand-md" light>
+          <Link to="/">
+            <img className="logo" src={logo} alt="Furniture Corner" />
+          </Link>
 
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
@@ -35,44 +37,37 @@ export default function Header() {
                 <Link to={"/login"}>Login</Link>
               </NavItem>
               <NavItem>
-                <NavLink href="/components/">All item</NavLink>
+                <Link to={"/login"}>Login</Link>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">
-                  Product
-                </NavLink>
+                <NavLink href="/all-items">All Items</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/products">Products</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
-                  Options
+                  Categories
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem>Option 1</DropdownItem>
-                  <DropdownItem>Option 2</DropdownItem>
+                  <DropdownItem>Living Room</DropdownItem>
+                  <DropdownItem>Bedroom</DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem>Reset</DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
             </Nav>
-            <NavbarText>Total</NavbarText>
-            <i class="fa-solid fa-heart"></i>
-            <div>
-              <Link to="/cart">ssss</Link>
-            </div>
-            <NavLink
-              href="/cart"
-              style={{ textDecoration: "none", color: "black" }}
-            >
-              <div
-                className="menu-item d-flex align-items-center"
-                // data-aos="fade-left"
-                // data-aos-duration="900"
-                // data-aos-delay="600"
-              >
+
+            <div className="header-icons">
+              <Link to="/wishlist" className="header-icon">
+                <i className="fa-solid fa-heart"></i>
+              </Link>
+              <Link to="/cart" className="header-icon">
                 <i className="fa-solid fa-cart-shopping"></i>
-                <div style={{ width: 20 }}></div>Giỏ Hàng
-              </div>
-            </NavLink>
+                <span>Giỏ Hàng</span>
+              </Link>
+            </div>
+            <NavbarText className="total-text">Total: $0.00</NavbarText>
           </Collapse>
         </Navbar>
       </Container>

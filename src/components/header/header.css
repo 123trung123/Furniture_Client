@@ -1,11 +1,25 @@
-.header{
-    background-color: bisque;
+.header {
+  background-color: rgb(252, 243, 233);
+  position: sticky !important;
+  top: 0;
+  z-index: 2;
 }
-.Brand_nostyle{
-    text-decoration: none;
-    color: black;
+.Brand_nostyle {
+  text-decoration: none;
+  color: black;
 }
-.logo{
-width: 85px;
-height: 100px;
+.logo {
+  width: 85px;
+  height: 100px;
+}
+.header-icons {
+  display: flex;
+  align-items: center;
+}
+
+.header-icon {
+  margin-right: 20px;
+}
+.total-text {
+  margin-left: 20px;
 }

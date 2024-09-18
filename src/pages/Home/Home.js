@@ -1,13 +1,14 @@
-import React from 'react'
-import Landingpage from '../../components/landingpage/Landingpage'
-import Header from '../../components/header/Header'
+import React from "react";
+import Header from "../../components/header/Header";
+import LandingPage from "../../components/landingpage/LandingPage";
+import Footer from "../../components/footer/Footer";
 
 export default function Home() {
   return (
     <div>
-        <Header/>
-      <Landingpage/>
-
+      <Header />
+      <LandingPage />
+      <Footer />
     </div>
-  )
+  );
 }
