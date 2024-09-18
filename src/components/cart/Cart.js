@@ -166,12 +166,12 @@ export default function Cart() {
                 <CardText>
                   <strong>Subtotal:</strong> ${totalPrice.toFixed(2)}
                 </CardText>
-                <CardText className="text-danger font-weight-bold">
+                <CardText className="text-muted font-weight-bold">
                   <strong>Total:</strong> ${totalPrice.toFixed(2)}
                 </CardText>
-                <Button color="dark" onClick={handlePay}>
+                <button className="cart-button" onClick={handlePay}>
                   Mua
-                </Button>
+                </button>
               </CardBody>
             </Card>
           </Col>
