@@ -32,6 +32,9 @@ export default function Header() {
           <Collapse isOpen={isOpen} navbar>
             <Nav className="m-auto" navbar>
               <NavItem>
+                <Link to={"/login"}>Login</Link>
+              </NavItem>
+              <NavItem>
                 <NavLink href="/components/">All item</NavLink>
               </NavItem>
               <NavItem>
@@ -53,8 +56,13 @@ export default function Header() {
             </Nav>
             <NavbarText>Total</NavbarText>
             <i class="fa-solid fa-heart"></i>
-            <div><Link to="/cart">ssss</Link></div>
-            <NavLink href="/cart" style={{ textDecoration: "none", color: "black" }}>
+            <div>
+              <Link to="/cart">ssss</Link>
+            </div>
+            <NavLink
+              href="/cart"
+              style={{ textDecoration: "none", color: "black" }}
+            >
               <div
                 className="menu-item d-flex align-items-center"
                 // data-aos="fade-left"
