@@ -1,20 +1,21 @@
 import React, { useEffect } from "react";
 import {
-  Box,
   Container,
-  Grid,
-  Typography,
+  Row,
+  Col,
   Button,
-  Divider,
-  CardContent,
-} from "@mui/material";
+  Card,
+  CardBody,
+  CardTitle,
+  CardText,
+  CardFooter,
+} from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteFromCart, updateCartItem ,setCartNull} from "../../redux/cartSlice";
+import { deleteFromCart, updateCartItem, setCartNull } from "../../redux/cartSlice";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import Swal from "sweetalert2";
 import "./cart.css";
-import { Card } from "reactstrap";
 
 export default function Cart() {
   const dispatch = useDispatch();
@@ -56,7 +57,7 @@ export default function Cart() {
       showConfirmButton: false,
       timer: 1500,
     });
-    dispatch(setCartNull([]))
+    dispatch(setCartNull([]));
   };
 
   useEffect(() => {
@@ -65,67 +66,40 @@ export default function Cart() {
   }, []);
 
   return (
-    <Container maxWidth="fluid" className="divborder">
-      <Box sx={{ py: 8 }}>
-        <Typography
-          className="lander"
-          variant="h4"
-          sx={{ textAlign: "left", mb: 4, fontWeight: 700 }}
+    <Container fluid className="divborder">
+      <div className="py-4">
+        <h4
+          className="lander mb-4 font-weight-bold"
           data-aos="fade-down"
           data-aos-duration="1500"
         >
           Cart
-        </Typography>
+        </h4>
 
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={8}>
-            <Box
-              sx={{
-                padding: 2,
-                backgroundColor: "#ffffff",
-                borderRadius: 1,
-                boxShadow: 3,
-              }}
+        <Row>
+          <Col md="8">
+            <Card
+              className="p-3 shadow-sm bg-white rounded"
               data-aos="fade-right"
               data-aos-duration="1000"
             >
               {cart.length === 0 ? (
-                <Typography variant="body1" sx={{ mb: 4 }}>
-                  Your cart is empty
-                </Typography>
+                <p>Your cart is empty</p>
               ) : (
                 <>
-                  <Grid container spacing={2} sx={{ fontWeight: 700, mb: 2 }}>
-                    <Grid item xs={3}>
-                      Product
-                    </Grid>
-                    <Grid item xs={2}>
-                      Price
-                    </Grid>
-                    <Grid item xs={3}>
-                      Quantity
-                    </Grid>
-                    <Grid item xs={2}>
-                      Subtotal
-                    </Grid>
-                    <Grid item xs={1}></Grid>
-                  </Grid>
-                  <Divider />
+                  <Row className="font-weight-bold mb-2">
+                    <Col xs="3">Product</Col>
+                    <Col xs="2">Price</Col>
+                    <Col xs="3">Quantity</Col>
+                    <Col xs="2">Subtotal</Col>
+                    <Col xs="1"></Col>
+                  </Row>
+                  <hr />
                   {cart.map((item, index) => (
-                    <>
-                      <Grid
-                        container
-                        alignItems="center"
-                        sx={{ my: 2 }}
-                        key={index}
-                      >
-                        <Grid item xs={3}>
-                          <Box
-                            sx={{
-                              display: "flex",
-                              alignItems: "center",
-                            }}
-                          >
+                    <div key={index}>
+                      <Row className="align-items-center my-2">
+                        <Col xs="3">
+                          <div className="d-flex align-items-center">
                             <img
                               src={item.picture}
                               alt={item.name}
@@ -135,139 +109,74 @@ export default function Cart() {
                                 marginRight: "10px",
                               }}
                             />
-                            <Typography
-                              variant="body1"
-                              sx={{ fontWeight: 500 }}
-                            >
-                              {item.name}
-                            </Typography>
-                          </Box>
-                        </Grid>
-                        <Grid item xs={2}>
-                          <Typography variant="body1">
-                            ${item.price.toFixed(2)}
-                          </Typography>
-                        </Grid>
-                        <Grid item xs={3}>
-                          <Box
-                            sx={{
-                              display: "flex",
-                              alignItems: "center",
-                            }}
-                          >
+                            <p>{item.name}</p>
+                          </div>
+                        </Col>
+                        <Col xs="2">
+                          <p>${item.price.toFixed(2)}</p>
+                        </Col>
+                        <Col xs="3">
+                          <div className="d-flex align-items-center">
                             <Button
-                              variant="outlined"
+                              outline
                               color="secondary"
                               onClick={() => updateById(item, 0)}
-                              sx={{ minWidth: "30px" }}
+                              className="mr-2"
+                              style={{ minWidth: "30px" }}
                             >
                               -
                             </Button>
-                            <Typography
-                              variant="body1"
-                              sx={{
-                                mx: 2,
-                                minWidth: "30px",
-                                textAlign: "center",
-                              }}
-                            >
-                              {item.quantity}
-                            </Typography>
+                            <span className="mx-2">{item.quantity}</span>
                             <Button
-                              variant="outlined"
+                              outline
                               color="primary"
                               onClick={() => updateById(item, 1)}
-                              sx={{ minWidth: "30px" }}
+                              className="ml-2"
+                              style={{ minWidth: "30px" }}
                             >
                               +
                             </Button>
-                          </Box>
-                        </Grid>
-                        <Grid item xs={2}>
-                          <Typography variant="body1">
-                            ${(item.price * item.quantity).toFixed(2)}
-                          </Typography>
-                        </Grid>
-                        <Grid item xs={1}>
+                          </div>
+                        </Col>
+                        <Col xs="2">
+                          <p>${(item.price * item.quantity).toFixed(2)}</p>
+                        </Col>
+                        <Col xs="1">
                           <Button
-                            variant="text"
-                            color="error"
+                            color="danger"
                             onClick={() => handleDelete(item.id)}
-                            sx={{ fontWeight: 700, fontSize: "1rem" }}
                           >
                             Delete
                           </Button>
-                        </Grid>
-                      </Grid>
-                      <Divider />
-                    </>
+                        </Col>
+                      </Row>
+                      <hr />
+                    </div>
                   ))}
                 </>
               )}
-            </Box>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <Card
-              sx={{
-                p: 3,
-                boxShadow: 3,
-                border: "1px solid #e0e0e0",
-                borderRadius: "8px",
-              }}
-              data-aos="fade-left"
-              data-aos-duration="1500"
-            >
-              <CardContent sx={{ display: "flex", flexDirection: "column" }}>
-                <Typography
-                  variant="h5"
-                  sx={{ fontWeight: 700, mb: 3, textAlign: "left" }}
-                >
+            </Card>
+          </Col>
+          <Col md="4">
+            <Card className="p-3 shadow-sm bg-white rounded" data-aos="fade-left" data-aos-duration="1500">
+              <CardBody>
+                <CardTitle tag="h5" className="font-weight-bold mb-3">
                   Cart totals
-                </Typography>
-                <Divider sx={{ mb: 3 }} />
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontWeight: 500,
-                    mb: 1,
-                    display: "flex",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  Subtotal: <span>${totalPrice.toFixed(2)}</span>
-                </Typography>
-                <Typography
-                  variant="h6"
-                  sx={{
-                    fontWeight: 700,
-                    color: "red",
-                    mb: 3,
-                    display: "flex",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  Total: <span>${totalPrice.toFixed(2)}</span>
-                </Typography>
-                <Button
-                  sx={{
-                    mt: 2,
-                    py: 1.5,
-                    backgroundColor: "#000",
-                    color: "white",
-                    fontWeight: 700,
-                    "&:hover": {
-                      backgroundColor: "#333",
-                    },
-                  }}
-                  onClick={handlePay}
-                >
+                </CardTitle>
+                <CardText>
+                  <strong>Subtotal:</strong> ${totalPrice.toFixed(2)}
+                </CardText>
+                <CardText className="text-danger font-weight-bold">
+                  <strong>Total:</strong> ${totalPrice.toFixed(2)}
+                </CardText>
+                <Button color="dark" onClick={handlePay}>
                   Mua
                 </Button>
-              </CardContent>
+              </CardBody>
             </Card>
-          </Grid>
-        </Grid>
-      </Box>
+          </Col>
+        </Row>
+      </div>
     </Container>
   );
 }
