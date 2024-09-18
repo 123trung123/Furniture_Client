@@ -29,13 +29,13 @@ export default function Header() {
         
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className="ms-auto"  navbar>
+          <Nav className="m-auto"  navbar>
             <NavItem>
-              <NavLink href="/components/">Components</NavLink>
+              <NavLink href="/components/">All item</NavLink>
             </NavItem>
             <NavItem>
               <NavLink href="https://github.com/reactstrap/reactstrap">
-                GitHub
+                Product
               </NavLink>
             </NavItem>
             <UncontrolledDropdown nav inNavbar>
@@ -50,7 +50,10 @@ export default function Header() {
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>
-          <NavbarText>Simple Text</NavbarText>
+          <NavbarText>Total</NavbarText>
+          <i class="fa-solid fa-heart"></i>
+        
+          <i class="fa-solid fa-cart-shopping"></i>
         </Collapse>
       </Navbar>
       </Container>
