@@ -26,11 +26,11 @@ export default function ContactUs() {
           <Button
             variant="contained"
             sx={{
-              backgroundColor: "#dd3431",
-              color: "#ffffff",
+              backgroundColor: "#ffe4c4",
+              color: "#333",
               padding: "10px 20px",
               "&:hover": {
-                backgroundColor: "#B02927",
+                backgroundColor: "#f0c090",
               },
             }}
             data-aos="fade-up"

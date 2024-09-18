@@ -4,11 +4,12 @@ import "./landingpage.css";
 import img1 from "../assets/product1.png";
 import img2 from "../assets/product2.png";
 import img3 from "../assets/product3.png";
+import img4 from "../../resources/dang.png"
 import { useDispatch, useSelector } from "react-redux";
 // import BestSeller from "../bestsellers/BestSeller";
 import { Row, Col, Container } from "reactstrap";
-// import { getList } from "../../redux/productsSlice";
-// import Features from "../feature/Features";
+import { getList } from "../../redux/shopSlice";
+import Features from "../feature/Features";
 // import CarouselMain from "../carousel/CarouselMain";
 // import Sale from "../sale/Sale";
 import ContactUs from "../contact/ContactUs";
@@ -20,7 +21,7 @@ import Slider from "react-slick";
 
 export default function LandingPage() {
   const dispatch = useDispatch();
-  // const { products } = useSelector((state) => state.products);
+  const { shop } = useSelector((state) => state.shop);
   const images = [
     {
       src: img1,
@@ -33,11 +34,11 @@ export default function LandingPage() {
     },
   ];
 
-  // useEffect(() => {
-  //   dispatch(getList());
-  //   window.scrollTo(0, 0);
-  //   Aos.init();
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(getList());
+    window.scrollTo(0, 0);
+    Aos.init();
+  }, [dispatch]);
 
   const sliderSettings = {
     dots: false,
@@ -98,24 +99,23 @@ export default function LandingPage() {
                 data-aos="fade-right"
                 data-aos-duration="1500"
               >
-                Tech
+                Furniture Corner
               </p>
               <div style={{ width: "20px" }}></div>
-              <p
+              {/* <p
                 className="Title3"
                 data-aos="fade-left"
                 data-aos-duration="1500"
               >
                 <span className="innerTitle3"> Trend</span>
-              </p>
+              </p> */}
             </div>
             <p
               className="text-light my-1"
               data-aos="zoom-out"
               data-aos-duration="1500"
             >
-              Discover top-quality peripherals that enhance your productivity
-              and gaming
+  Đảng
             </p>
             <Link
               className="appbar"
@@ -124,7 +124,7 @@ export default function LandingPage() {
               data-aos="zoom-out"
               data-aos-duration="1500"
             >
-              Mua
+              {/* <img src={img4}></img> */}
             </Link>
           </div>
         </div>
@@ -135,7 +135,7 @@ export default function LandingPage() {
           </Row>
         </Container>
 
-        {/* <Features /> */}
+        <Features />
 
         <div style={{ padding: "3rem 0" }}>
           <Container>

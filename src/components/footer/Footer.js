@@ -112,11 +112,11 @@ export default function Footer() {
         {/* Contact and Social Media */}
         <Row className="justify-content-between">
           <Col>
-            <p>Address: Lorem ipsum dolor sit amet</p>
-            <p>Mon - Fri: 9am - 5pm</p>
+            <p>Địa Chỉ: Lorem ipsum dolor sit amet</p>
+            <p>Thứ Hai - Thứ Sáu: 9am - 5pm</p>
             <p style={{ textDecoration: "underline" }}>
               <Link to="/contact" className="footer-link">
-                Send Message
+                Gửi Tin Nhắn
               </Link>
             </p>
           </Col>

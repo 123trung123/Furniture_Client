@@ -1,0 +1,23 @@
+.product-card {
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding: 0 !important;
+  border-radius: 16px;
+}
+.product-card-img {
+  background-repeat: no-repeat;
+  background-size: auto;
+  width: 100%;
+  height: auto;
+}
+.filter-col {
+  padding: 0 !important;
+}
+.filter-container {
+  box-sizing: border-box;
+}
+.filter-input,
+.filter-select {
+  width: 100%;
+  box-sizing: border-box;
+}

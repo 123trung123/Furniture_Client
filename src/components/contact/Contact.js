@@ -95,10 +95,10 @@ export default function Contact() {
                 <strong>Email:</strong> test@company.com
               </Typography>
               <Typography variant="body1" className="contact-info">
-                <strong>Phone:</strong> +123 456 7890
+                <strong>Điện Thoại:</strong> +123 456 7890
               </Typography>
               <Typography variant="body1" className="contact-info">
-                <strong>Address:</strong> 123 Street, City, Country
+                <strong>Địa Chỉ:</strong> 123 Street, City, Country
               </Typography>
               <Typography variant="body2" className="contact-note">
                 Chúng tôi sẵn sàng trả lời các câu hỏi của bạn. Hãy liên hệ
