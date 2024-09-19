@@ -1,7 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
-// import { FaFacebook, FaInstagram, FaYoutube, FaHome, FaShoppingBag, FaShoppingCart, FaEnvelope, FaInfoCircle } from "react-icons/fa";
 import logo from "../../resources/logo.png";
 import "./footer.css";
 

@@ -12,14 +12,114 @@
   width: 85px;
   height: 100px;
 }
-.header-icons {
+/* .header-icons {
   display: flex;
   align-items: center;
 }
 
 .header-icon {
   margin-right: 20px;
-}
+} */
 .total-text {
   margin-left: 20px;
+}
+.totop {
+  position: fixed !important;
+  bottom: 1% !important;
+  right: 1% !important;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgb(255, 196, 196);
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 0px 4px rgba(255, 160, 160, 0.553);
+  /* cursor: pointer; */
+  transition-duration: 0.3s;
+  overflow: hidden;
+  position: relative;
+}
+.svgIcon {
+  width: 12px;
+  transition-duration: 0.3s;
+}
+.svgIcon path {
+  fill: white;
+}
+.totop:hover {
+  width: 140px;
+  border-radius: 50px;
+  transition-duration: 0.3s;
+  background-color: rgb(255, 160, 160);
+  align-items: center;
+}
+.totop:hover .svgIcon {
+  transition-duration: 0.3s;
+  transform: translateY(-100%);
+}
+.totop::before {
+  position: absolute;
+  bottom: -20px;
+  content: "Back to Top";
+  color: white;
+  font-size: 0px;
+}
+.totop:hover::before {
+  font-size: 13px;
+  opacity: 1;
+  bottom: unset;
+  transition-duration: 0.3s;
+}
+.cc-calto-action-ripple {
+  position: fixed !important;
+  bottom: 1% !important;
+  left: 1% !important; 
+  margin:0!important;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgb(255, 196, 196);
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 0px 4px rgba(248, 211, 185, 0.553);
+  transition-duration: 0.3s;
+  overflow: hidden;
+  color: #333;
+  position: relative;
+}
+.cc-calto-action-ripple:hover {
+  width: 140px;
+  border-radius: 50px;
+  transition-duration: 0.3s;
+  background-color: rgb(255, 160, 160);
+  align-items: center;
+} 
+.cc-calto-action-ripple .num {
+  display: none;
+  margin-left: 10px;
+  font-size: 13px;
+}
+.cc-calto-action-ripple:hover .num {
+  display: inline;
+}
+.menu{
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 15px 15px, rgba(0, 0, 0, 0.12) 0px -20px 15px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 6px 6px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.Menubar li a{
+  color: black;
+}
+.cartstyle{
+  transition: 0.3s ease !important;
+}
+.cartstyle:hover{
+  transform: translateY(-5px);
+}
+.containMenu{
+  overflow: hidden;
 }

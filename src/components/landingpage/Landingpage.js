@@ -13,8 +13,8 @@ import Features from "../feature/Features";
 // import CarouselMain from "../carousel/CarouselMain";
 // import Sale from "../sale/Sale";
 import ContactUs from "../contact/ContactUs";
-// import Review from "../Review/Review";
-// import Relatedbrand from "../relatedbrand/Relatedbrand";
+import Review from "../Review/Review";
+import Relatedbrand from "../relatedbrand/Relatedbrand";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import Slider from "react-slick";
@@ -160,10 +160,10 @@ export default function LandingPage() {
           </Container>
         </div>
 
-        {/* <Relatedbrand /> */}
+        <Relatedbrand />
         {/* <Sale /> */}
         <ContactUs />
-        {/* <Review /> */}
+        <Review />
       </Container>
     </div>
   );
