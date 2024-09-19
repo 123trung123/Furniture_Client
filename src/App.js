@@ -1,5 +1,4 @@
 import React from "react";
-import Header from "./components/header/Header";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import CartPage from "./pages/CartPage/CartPage";
 import ContactPage from "./pages/ContactPage/ContactPage";
@@ -10,7 +9,6 @@ import ProductPage from "./pages/productpage/ProductPage";
 export default function App() {
   return (
     <div>
-      
       <HashRouter>
         <Routes>
         <Route path="/" element={<Home />} />

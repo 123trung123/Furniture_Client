@@ -39,8 +39,18 @@ export default function Header() {
           <Collapse isOpen={isOpen} navbar>
             <Nav className="m-auto" navbar>
               <NavItem>
+<<<<<<< HEAD
                 <Link to="/" className="header-icon" />
                 {/* <NavLink href="/all-items">All Items</NavLink> */}
+=======
+                <Link to={"/login"}>Login</Link>
+              </NavItem>
+              <NavItem>
+                <Link to={"/login"}>Login</Link>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/all-items">All Items</NavLink>
+>>>>>>> 4159538edea8cbb758d48d3c881cedd4338e7688
               </NavItem>
               <NavItem>
                 <Link to="/products" className="header-icon" />

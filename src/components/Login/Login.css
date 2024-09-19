@@ -1,0 +1,75 @@
+.bg-login {
+  margin: 0;
+  height: 100vh;
+  background-image: url("../../resources/login_img/bg_login.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.logo-web {
+  margin: 0;
+  height: 30vh;
+  width: 30vh;
+  background-image: url("../../resources/logo.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.title-welcome {
+  font-size: "70px";
+  color: #522b18;
+}
+.login-box {
+  position: relative;
+  height: 100vh;
+}
+
+.login-box .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+
+.login-box .content {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  position: relative;
+}
+.login-box .content .form-box {
+  background-color: #fff;
+  height: 60%;
+  width: 50%;
+  padding: 17px 17px;
+  border-radius: 1%;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.left-box {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.button-form {
+  width: 100%;
+  border-radius: 0.5rem;
+  height: 50px;
+  outline: none;
+}
+.button-GG {
+  background-color: #dc3545;
+}
+.button-FB {
+  background-color: #0d6efd;
+}
+.button-TT {
+  background-color: #0dcaf0;
+}
