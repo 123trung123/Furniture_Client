@@ -61,8 +61,8 @@
     color: #333;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
-.btn {
-  --color: #ff0000 !important;
+.btn_general {
+  --color: #626262 !important;
   color: black !important   ;
   --color2: rgb(255, 255, 255);
   transition: 0.2s !important;
@@ -76,8 +76,8 @@
   backdrop-filter: blur(5px);
   background-color: transparent !important;
 }
-.btn::after,
-.btn::before {
+.btn_general::after,
+.btn_general::before {
   content: "";
   display: block;
   height: 100%;
@@ -91,7 +91,7 @@
   background-color: var(--color);
 }
 
-.btn::before {
+.btn_general::before {
   top: -50%;
   left: -25%;
   transform: skew(90deg) rotate(180deg) translate(-50%, -50%);

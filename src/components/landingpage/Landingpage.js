@@ -4,13 +4,13 @@ import "./landingpage.css";
 import img1 from "../assets/product1.png";
 import img2 from "../assets/product2.png";
 import img3 from "../assets/product3.png";
-import img4 from "../../resources/dang.png"
+import img4 from "../../resources/dang.png";
 import { useDispatch, useSelector } from "react-redux";
 // import BestSeller from "../bestsellers/BestSeller";
 import { Row, Col, Container } from "reactstrap";
 import { getList } from "../../redux/shopSlice";
 import Features from "../feature/Features";
-// import CarouselMain from "../carousel/CarouselMain";
+import CarouselMain from "../carousel/CarouselMain";
 // import Sale from "../sale/Sale";
 import ContactUs from "../contact/ContactUs";
 import Review from "../Review/Review";
@@ -21,7 +21,7 @@ import Slider from "react-slick";
 
 export default function LandingPage() {
   const dispatch = useDispatch();
-  const { shop } = useSelector((state) => state.shop);
+  const { products } = useSelector((state) => state.shop);
   const images = [
     {
       src: img1,
@@ -74,7 +74,7 @@ export default function LandingPage() {
               data-aos="fade-down"
               data-aos-duration="1500"
             >
-              <Slider {...sliderSettings}>
+              {/* <Slider {...sliderSettings}>
                 {images.map((img, index) => (
                   <div key={index}>
                     <img
@@ -91,9 +91,9 @@ export default function LandingPage() {
                     />
                   </div>
                 ))}
-              </Slider>
+              </Slider> */}
             </Container>
-            <div className="d-flex">
+            <div className="">
               <p
                 className="Title3"
                 data-aos="fade-right"
@@ -101,6 +101,18 @@ export default function LandingPage() {
               >
                 Furniture Corner
               </p>
+
+              <p
+                className="Title3"
+                data-aos="fade-right"
+                data-aos-duration="1500"
+              >
+                {" "}
+                Modern & Exclusive Furniture
+              </p>
+              <button>
+                <span class="button_top"> Button </span>
+              </button>
               <div style={{ width: "20px" }}></div>
               {/* <p
                 className="Title3"
@@ -114,9 +126,7 @@ export default function LandingPage() {
               className="text-light my-1"
               data-aos="zoom-out"
               data-aos-duration="1500"
-            >
-  Đảng
-            </p>
+            ></p>
             <Link
               className="appbar"
               to="/products"
@@ -156,7 +166,7 @@ export default function LandingPage() {
                 <span className="innerTitle"> Items</span>
               </p>
             </div>
-            {/* <CarouselMain products={products} /> */}
+            <CarouselMain products={products} />
           </Container>
         </div>
 

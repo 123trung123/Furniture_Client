@@ -10,7 +10,7 @@ const featureData = [
     title: 'Feature One',
     description: 'Description of feature one and how it benefits the user.',
     img: img1,
-  },
+  },  
   {
     title: 'Feature Two',
     description: 'Description of feature two and how it benefits the user.',

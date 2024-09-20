@@ -1,16 +1,20 @@
-import React from "react";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import Products from "../components/products/Products";
+const initialState = {
+  products:[],
+  status:"start",
+  error:""
+};
 
 // const BASE_URL = process.env.REACT_APP_LINK;
-const BASE_URL = "https://66a07b747053166bcabb8c62.mockapi.io/Products"
-export const getList = createAsyncThunk("shop/getList",async()=>{
-    const res =  await axios.get(BASE_URL)
-    return res.data
-})
-export const getAlll = createAsyncThunk(
-  "student/getAll",
+const BASE_URL = "https://66a07b747053166bcabb8c62.mockapi.io/Products";
+export const getList = createAsyncThunk("shop/getList", async () => {
+  const res = await axios.get(BASE_URL);
+  return res.data;
+});
+
+export const getAll = createAsyncThunk(
+  "shop/getAll",
   async ({ currentPage, limit }, thunkAPI) => {
     const url = `${BASE_URL}/list?page=${currentPage}&size=${limit}`;
     try {
@@ -22,8 +26,8 @@ export const getAlll = createAsyncThunk(
   }
 );
 
-export const deleteStudentById = createAsyncThunk(
-  "student/deleteById",
+export const deleteProductById = createAsyncThunk(
+  "shop/deleteById",
   async (id, thunkAPI) => {
     const url = `${BASE_URL}/delete/${id}`;
     try {
@@ -35,12 +39,12 @@ export const deleteStudentById = createAsyncThunk(
   }
 );
 
-export const saveStudent = createAsyncThunk(
-  "student/save",
-  async (studentData, thunkAPI) => {
+export const saveProduct = createAsyncThunk(
+  "shop/save",
+  async (productData, thunkAPI) => {
     const url = `${BASE_URL}/save`;
     try {
-      const response = await axios.post(url, studentData);
+      const response = await axios.post(url, productData);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -48,24 +52,24 @@ export const saveStudent = createAsyncThunk(
   }
 );
 
-export const editStudent = createAsyncThunk(
-  "student/editProduct",
-  async ({ id, student }, thunkAPI) => {
+export const editProduct = createAsyncThunk(
+  "shop/editProduct",
+  async ({ id, product }, thunkAPI) => {
     const url = BASE_URL + `/update/${id}`;
     try {
-      console.log(student);
-      const response = await axios.put(url, student);
-      return response.data; // Trả về dữ liệu từ phản hồi
+      console.log(product);
+      const response = await axios.put(url, product);
+      return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data); // Trả về lỗi nếu có
+      return thunkAPI.rejectWithValue(error.response.data);
     }
   }
 );
 
-export const getStudentByName = createAsyncThunk(
-  "student/getByName",
+export const getProductByName = createAsyncThunk(
+  "shop/getByName",
   async (name, thunkAPI) => {
-    const url = `${BASE_URL}/get?ten=${name}`;
+    const url = `${BASE_URL}/get?name=${name}`;
     try {
       const response = await axios.get(url);
       return response.data;
@@ -74,60 +78,28 @@ export const getStudentByName = createAsyncThunk(
     }
   }
 );
-export const getStudentByNgaySinh = createAsyncThunk(
-  "student/getByNgaySinh",
-  async ({ namSinh1, namsinh2 }, thunkAPI) => {
-    const url = `${BASE_URL}/getbynamsinh?namSinh1=${namSinh1}&namsinh2=${namsinh2}`;
-    try {
-      const response = await axios.get(url);
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data);
-    }
-  }
-);
-export const getStudentByXepLoai = createAsyncThunk(
-  "student/getByXepLoai",
-  async (xepLoai, thunkAPI) => {
-    const url = `${BASE_URL}/getbyxeploai?xepLoai=${xepLoai}`;
-    try {
-      const response = await axios.get(url);
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data);
-    }
-  }
-);
+
 export const uploadImage = createAsyncThunk(
-  "student/uploadImage",
-  async ({id,formData}, thunkAPI) => {
+  "shop/uploadImage",
+  async ({ id, formData }, thunkAPI) => {
     const url = `${BASE_URL}/uploadimage/${id}`;
     try {
-      const response = await axios.post(url,formData,{
-        headers:{
-          'Content-Type': 'multipart/form-data'
-        }
-      })
+      const response = await axios.post(url, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
     }
   }
 );
-export const getImages = createAsyncThunk( "student/getImages",async (id, thunkAPI) => {
+
+export const getImages = createAsyncThunk(
+  "shop/getImages",
+  async (id, thunkAPI) => {
     const url = `${BASE_URL}/getimage/${id}`;
-    try {
-      const response = await axios.get(url)
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data);
-    }
-  }
-);
-export const search = createAsyncThunk(
-  "student/search",
-  async ({ xepLoai, ten, thanhPho, startYear, endYear }, thunkAPI) => {
-    const url = `${BASE_URL}/search?xepLoai=${xepLoai}&ten=${ten}&thanhPho=${thanhPho}&startYear=${startYear}&endYear=${endYear}`;
     try {
       const response = await axios.get(url);
       return response.data;
@@ -136,7 +108,10 @@ export const search = createAsyncThunk(
     }
   }
 );
-export const deleteImage = createAsyncThunk("student/deleteimage",async (id, thunkAPI) => {
+
+export const deleteImage = createAsyncThunk(
+  "shop/deleteImage",
+  async (id, thunkAPI) => {
     const url = `${BASE_URL}/deleteimage/${id}`;
     try {
       const response = await axios.delete(url);
@@ -146,6 +121,7 @@ export const deleteImage = createAsyncThunk("student/deleteimage",async (id, thu
     }
   }
 );
+
 const shopSlice = createSlice({
   name: "shop",
   initialState: {
@@ -154,7 +130,7 @@ const shopSlice = createSlice({
     status: null,
     error: null,
     message: null,
-    stuff: null,
+    images: [],
   },
   reducers: {
     resetStatusAndMessage: (state) => {
@@ -165,109 +141,59 @@ const shopSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getAlll.fulfilled, (state, action) => {
-        state.students = action.payload.data.studentList;
+    .addCase(getList.pending, (state) => {
+      state.status = "loading";
+    })
+    .addCase(getList.fulfilled, (state, action) => {
+      state.status = "succeeded";
+      state.products = action.payload;
+    })
+    .addCase(getList.rejected, (state, action) => {
+      state.status = "failed";
+      state.error = action.error.message;
+    })
+      .addCase(getAll.fulfilled, (state, action) => {
+        state.products = action.payload.data.productList;
         state.totalPages = action.payload.data.totalPages;
       })
-      .addCase(deleteStudentById.fulfilled, (state, action) => {
+      .addCase(deleteProductById.fulfilled, (state, action) => {
         state.status = action.payload.status;
         state.message = action.payload.message;
-        console.log(action.payload.data);
-        state.students = state.students.filter(
-          (student) => student.id !== action.payload.data
+        state.products = state.products.filter(
+          (product) => product.id !== action.payload.data
         );
       })
-      .addCase(deleteStudentById.rejected, (state, action) => {
-        state.status = action.payload.status;
-        state.message = action.payload.message;
-        state.error = action.payload.error;
-      })
-      .addCase(saveStudent.fulfilled, (state, action) => {
-        state.students = [...state.students, action.payload.data];
+      .addCase(saveProduct.fulfilled, (state, action) => {
+        state.products = [...state.products, action.payload.data];
         state.status = action.payload.status;
         state.message = action.payload.message;
       })
-      .addCase(saveStudent.rejected, (state, action) => {
-        state.status = action.payload.status;
-        state.error = action.payload.data;
-        state.message = action.payload.message;
-      })
-      .addCase(editStudent.fulfilled, (state, action) => {
+      .addCase(editProduct.fulfilled, (state, action) => {
         state.status = action.payload.status;
         state.message = action.payload.message;
-        state.students = state.students.map((student) =>
-          student.id === action.payload.data.id ? action.payload.data : student
+        state.products = state.products.map((product) =>
+          product.id === action.payload.data.id ? action.payload.data : product
         );
       })
-      .addCase(editStudent.rejected, (state, action) => {
-        state.status = action.payload.status;
-        state.message = action.payload.message;
-        state.error = action.payload.data;
-      })
-      .addCase(getStudentByName.fulfilled, (state, action) => {
-        state.students = action.payload;
+      .addCase(getProductByName.fulfilled, (state, action) => {
+        state.products = action.payload;
         state.status = action.payload.status;
       })
-      .addCase(getStudentByNgaySinh.fulfilled, (state, action) => {
-        state.students = action.payload.data;
+      .addCase(uploadImage.fulfilled, (state, action) => {
         state.status = action.payload.status;
       })
-      .addCase(getStudentByXepLoai.fulfilled, (state, action) => {
-        state.students = action.payload.data;
-        state.status = action.payload.status;
-      })
-      .addCase(getStudentByNgaySinh.rejected, (state, action) => {
-        state.status = action.payload.status;
-        state.error = action.payload.data;
-        state.message = action.payload.message;
-      })
-      .addCase(getStudentByXepLoai.rejected, (state, action) => {
-        state.status = action.payload.status;
-        state.error = action.payload.data;
-        state.message = action.payload.message;
-      })
-      .addCase(getAlll.rejected, (state, action) => {
-        state.status = action.payload.status;
-        state.error = action.payload.data;
-        state.message = action.payload.message;
-      })
-      .addCase(search.fulfilled, (state, action) => {
-        state.students = action.payload.data;
-        state.status = action.payload.status;
-      })
-      .addCase(search.rejected, (state, action) => {
-        state.status = action.payload.status;
-        state.error = action.payload.data;
-        state.message = action.payload.message;
-      })
-      .addCase(uploadImage.fulfilled, (state,action)=> {
-        state.status = action.payload.status;
-      })
-      
       .addCase(getImages.fulfilled, (state, action) => {
-        state.imagename = action.payload.data;
+        state.images = action.payload.data;
         state.status = action.payload.status;
         state.message = action.payload.message;
       })
-      .addCase(getImages.rejected, (state, action) => {
-        state.status = action.payload.status;
-        state.error = action.payload.data;
-        state.message = action.payload.message;
-      })
-      .addCase(deleteImage.fulfilled ,(state,action)=>{
-        // state.status = action.payload.status;
-        // state.message = action.payload.message;
-        state.imagename = state.imagename.filter(
-          (imagename) => imagename.id !== action.payload.data
+      .addCase(deleteImage.fulfilled, (state, action) => {
+        state.images = state.images.filter(
+          (image) => image.id !== action.payload.data
         );
-      })
-      .addCase(deleteImage.rejected, (state, action) => {
-        // state.status = action.payload.status;
-        // state.message = action.payload.message;
-        // state.error = action.payload.data;
       });
-      
   },
 });
-export const {resetStatusAndMessage} = shopSlice.actions;
+
+export const { resetStatusAndMessage } = shopSlice.actions;
 export default shopSlice.reducer;

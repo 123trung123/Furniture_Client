@@ -1,12 +1,15 @@
 import React from 'react';
-import { Container, Row, Col, Card, CardBody } from 'reactstrap';
+import { Container, Row, Col, CardBody } from 'reactstrap';
 import Slider from 'react-slick';
 
-import img1 from '../assets/nvidia.png';
-import img2 from '../assets/corsair.png';
-import img3 from '../assets/msi.png';
-import img4 from '../assets/logitech.png';
-import img5 from '../assets/amd.png';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
+import img1 from '../../resources/pngwing1.png';
+import img2 from '../../resources/pngwing2.png';
+import img3 from '../../resources/pngwing3.png';
+import img4 from '../../resources/pngwing4.png';
+import img5 from '../../resources/pngwing5.png';
 
 const slideImages = [img1, img2, img3, img4, img5];
 
@@ -17,9 +20,8 @@ const sliderSettings = {
   slidesToScroll: 1,
   autoplay: true,
   speed: 3500,
-  autoplaySpeed: 0,
-  pauseOnHover: true,
-  cssEase: 'linear'
+  autoplaySpeed: 1,
+  cssEase: 'linear',
 };
 
 export default function Relatedbrand() {
@@ -35,7 +37,12 @@ export default function Relatedbrand() {
           <Slider {...sliderSettings}>
             {slideImages.map((img, index) => (
               <div key={index}>
-                <img className="logo_brand" src={img} alt={`brand-${index}`} style={{ width: '70%', margin: '0 auto' }} />
+                <img
+                  className="logo_brand"
+                  src={img}
+                  alt={`brand-${index}`}
+                  style={{ width: '100px', height: 'auto', margin: '0 auto' }}
+                />
               </div>
             ))}
           </Slider>

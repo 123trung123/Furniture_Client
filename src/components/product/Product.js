@@ -2,7 +2,7 @@ import React from "react";
 import { Card, CardBody, CardText, CardTitle, Col, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-// import { addToCart } from "../../redux/cartSlice";
+import { addToCart } from "../../redux/cartSlice";
 import "./product.css";
 import Swal from 'sweetalert2';
 
@@ -14,7 +14,7 @@ export default function Product({ products }) {
       text: "Item has been added!",
       icon: "success"
     });
-    // dispatch(addToCart(product));
+    dispatch(addToCart(product));
   };
 
   return (

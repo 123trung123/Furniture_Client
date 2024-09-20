@@ -14,6 +14,7 @@ import Aos from "aos";
 export default function Login() {
   useEffect(() => {
     Aos.init();
+    window.scrollTo(0, 0);
   });
   return (
     <div className="bg-login">

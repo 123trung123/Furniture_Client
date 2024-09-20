@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <div
       className="footer"
-      style={{ backgroundColor: "#111", color: "", padding: "2rem 0" }}
+      style={{ backgroundColor: "#111", color: "", padding: "0 0" }}
     >
       <Container>
         <Row>
@@ -149,7 +149,7 @@ export default function Footer() {
             color: "#bbb",
           }}
         >
-          <p>© 2024 Trung. All rights reserved. - TechTrends</p>
+          <p>© 2024 . All rights reserved. - Furniture Corner</p>
         </div>
       </Container>
     </div>

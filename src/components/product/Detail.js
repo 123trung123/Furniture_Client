@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { Button, Row, Col, Card, CardBody } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { getList } from "../../redux/shopSlice";
-// import { addToCart } from "../../redux/cartSlice";
+import { addToCart } from "../../redux/cartSlice";
 import Aos from "aos";
 import Swal from 'sweetalert2';
 import 'aos/dist/aos.css';
@@ -11,12 +11,12 @@ import "./detail.css";
 
 export default function Detail() {
   const { id } = useParams();
-  const { shop } = useSelector((state) => state.shop);
-  const pro = shop.find((item) => item.id === id);
+  const { products } = useSelector((state) => state.shop);
+  const pro = products.find((item) => item.id === id);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // dispatch(getList());
+    dispatch(getList());
     Aos.init();
     window.scrollTo(0, 0);
   }, [dispatch]);
@@ -26,7 +26,7 @@ export default function Detail() {
       text: "Item has been added!",
       icon: "success"
     });
-    // dispatch(addToCart(product));
+    dispatch(addToCart(product));
   };
 
   if (!pro) {

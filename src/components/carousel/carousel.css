@@ -1,0 +1,70 @@
+.contain{
+  position: relative;
+  overflow: hidden;
+  transition: 0.3s ease-in;
+  min-height: 275px;
+}
+.contain:hover{
+  transform: translateY(-10px);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+.image-container {
+  width: 100%;
+  height: 100px;
+  z-index: 10;
+}
+.image_carousel {
+  object-fit: contain; 
+  position: absolute;
+  height: 70%;
+  width: 70%;
+  bottom: 10px;
+  right: 0;
+}
+.btn-chi-tiet2 {
+  background: #fff;
+  font-family: "Orbitron", sans-serif;
+  border: none;
+  padding-top: 10px;
+  padding-bottom:10px ;
+  padding: auto;
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 600;
+  width: 120px;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  transform: skew(-21deg);
+  text-decoration: none;
+  color: #333;
+}
+.btn-chi-tiet2:hover {
+  color: white;
+}
+.btn-chi-tiet2 span {
+  display: inline-block;
+  transform: skew(21deg);
+  position: relative;
+  color: #fff;
+  z-index: 1;
+  mix-blend-mode: difference;
+}
+
+.btn-chi-tiet2::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 100%;
+  left: 0;
+  background: rgb(20, 20, 20);
+  opacity: 0;
+  z-index: -1;
+  transition: all 0.5s;
+}
+.btn-chi-tiet2:hover::before {
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
