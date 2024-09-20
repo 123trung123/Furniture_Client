@@ -8,6 +8,7 @@ import DetailPage from "./pages/DetailPage/DetailPage";
 import ProductPage from "./pages/productpage/ProductPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import SettingPage from "./pages/SettingPage/SettingPage";
+import RegisterPage from "./pages/LoginPage/RegisterPage";
 export default function App() {
   return (
     <div>
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/user" element={<SettingPage />} />
           <Route path="/reviews" element={<Home/>} />
+          <Route path="/register" element={<RegisterPage/>} />
         </Routes>
       </HashRouter>
     </div>

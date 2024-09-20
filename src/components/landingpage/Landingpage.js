@@ -111,7 +111,15 @@ export default function LandingPage() {
                 Modern & Exclusive Furniture
               </p>
               <button>
-                <span class="button_top"> Button </span>
+                <span class="button_top">  <Link
+              className="appbar"
+              to="/products"
+              style={{ color: "inherit", textDecoration: "none" }}
+              data-aos="zoom-out"
+              data-aos-duration="1500"
+            >
+              Shop
+            </Link></span>
               </button>
               <div style={{ width: "20px" }}></div>
               {/* <p
@@ -127,15 +135,14 @@ export default function LandingPage() {
               data-aos="zoom-out"
               data-aos-duration="1500"
             ></p>
-            <Link
+            {/* <Link
               className="appbar"
               to="/products"
               style={{ color: "inherit", textDecoration: "none" }}
               data-aos="zoom-out"
               data-aos-duration="1500"
             >
-              {/* <img src={img4}></img> */}
-            </Link>
+            </Link> */}
           </div>
         </div>
 
