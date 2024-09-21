@@ -60,9 +60,10 @@ export default function Products() {
         <p className="Title" data-aos="zoom-out-down">
           Products<span className="innerTitle"></span>
         </p>
-        <Card className="product-card" data-aos="fade-left" data-aos-duration="1500">
+        <div className="banner_container product-card"><Card className="" data-aos="fade-left" data-aos-duration="1500">
           <CardImg top src={img1} alt="Banner" className="product-card-img" />
-        </Card>
+        </Card></div>
+        
         <div style={{ height: '40px' }}></div>
         <Row style={{ margin: "0 auto", padding: 0 }}>
           <Col lg={10} md={10} sm={10} xs={12}>
