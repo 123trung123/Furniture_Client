@@ -6,8 +6,7 @@ const initialState = {
   error:""
 };
 
-// const BASE_URL = process.env.REACT_APP_LINK;
-const BASE_URL = "https://66a07b747053166bcabb8c62.mockapi.io/Products";
+const BASE_URL = productENV;
 
 export const getList = createAsyncThunk("shop/getList", async () => {
   const res = await axios.get(BASE_URL);
