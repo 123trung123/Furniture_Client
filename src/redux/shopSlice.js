@@ -1,12 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-const initialState = {
-  products:[],
-  status:"start",
-  error:""
-};
+// const initialState = {
+//   products:[],
+//   status:"start",
+//   error:""
+// };
 
-const BASE_URL = productENV;
+const BASE_URL = "https://66a07b747053166bcabb8c62.mockapi.io/Products";
 
 export const getList = createAsyncThunk("shop/getList", async () => {
   const res = await axios.get(BASE_URL);

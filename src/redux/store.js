@@ -10,10 +10,10 @@ const store = configureStore({
   reducer: {
     cart: cartSlice,
     shop: shopSlice,
-    user: userSlice,
-    social: socialSlice,
-    role: roleSlice,
-    order: orderSlice,
+    // user: userSlice,
+    // social: socialSlice,
+    // role: roleSlice,
+    // order: orderSlice,
   },
 });
 export default store;
