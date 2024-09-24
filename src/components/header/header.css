@@ -162,3 +162,72 @@
   font-size: inherit;
   cursor: pointer;
 }
+
+.call-button {
+  position: fixed;
+  bottom: 0;
+  left: 20px;
+}
+
+.cc-calto-action-ripple { 
+  width: auto; /* Để tự động điều chỉnh kích thước */
+  height: 50px; /* Chiều cao cố định */
+  width: 50px;
+  border-radius: 25px; /* Biến thành hình tròn dài */
+  background-color: bisque;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  animation: shake 0.5s infinite; /* Hiệu ứng lắc */
+  padding: 0 10px; /* Padding bên trái và bên phải */
+}
+
+@keyframes shake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(10deg); }
+  50% { transform: rotate(-10deg); }
+  75% { transform: rotate(10deg); }
+}
+
+.cc-calto-action-ripple:hover {
+  animation: none; /* Dừng lắc khi hover */
+}
+
+.cc-calto-action-ripple .num {
+  display: none; /* Ẩn số điện thoại mặc định */
+  margin-left: 5px; /* Khoảng cách giữa icon và số điện thoại */
+}
+
+.cc-calto-action-ripple:hover .num {
+  display: inline; /* Hiển thị số khi hover */
+}
+
+
+.totop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: bisque;
+  border: none;
+  border-radius: 25px;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.scroll-text {
+  display: none; /* Ẩn text mặc định */
+  margin-left: 5px; /* Khoảng cách giữa icon và text */
+}
+
+.totop:hover .svgIcon {
+  display: none; /* Ẩn icon khi hover */
+}
+
+.totop:hover .scroll-text {
+  display: inline; /* Hiển thị text khi hover */
+}
