@@ -39,7 +39,10 @@ export default function Header() {
           <Collapse isOpen={isOpen} navbar>
             <Nav className="navbar-nav m-auto align-items-center" navbar>
               <NavItem>
-                <Link to="/" className="header-item">
+                <Link to="/listuser" className="header-item">
+                  user
+                </Link>
+                <Link to="/l" className="header-item">
                   Home
                 </Link>
               </NavItem>
