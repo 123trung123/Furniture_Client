@@ -35,14 +35,23 @@ export default function Product({ products }) {
       data-aos={products.id % 2 === 0 ? "flip-left" : "flip-right"}
       data-aos-duration="1500"
     >
-      <Card className="product-card h-100 d-flex flex-column" >
+      <Card className="product-card h-100 d-flex flex-column">
         <div className="product-image-container">
+          {/* Ensure productImages are rendered properly */}
           <Link to={`/products/detail/${products.id}`}>
-            <img
-              className="product-image"
-              src={products.picture}
-              alt={products.name}
-            />
+            {products.productImages?.length > 0 ? (
+              <img
+                className="product-image"
+                src={products.productImages[0].url} // Assuming productImages have a url field
+                alt={products.name}
+              />
+            ) : (
+              <img
+                className="product-image"
+                src="/default-image.png" // Fallback image if no product images exist
+                alt={products.name}
+              />
+            )}
           </Link>
         </div>
         <CardBody>
@@ -76,7 +85,12 @@ export default function Product({ products }) {
             >
               Details
             </Link>
-            <Button  className="button-custom"  variant="contained" color="primary" onClick={() => handleAdd(products)}>
+            <Button
+              className="button-custom"
+              variant="contained"
+              color="primary"
+              onClick={() => handleAdd(products)}
+            >
               Add
             </Button>
           </div>

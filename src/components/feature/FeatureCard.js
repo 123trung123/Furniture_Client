@@ -13,12 +13,14 @@ export default function FeatureCard({ title, description, img }) {
         <Typography variant="body1" className="feature-card-description">
           {description}
         </Typography>
+        <Link to="/products">
         <button className="learn-more mt-5">
+          
           <span className="circle" aria-hidden="true">
             <span className="icon arrow"></span>
           </span>
           <span className="button-text">Shop</span>
-        </button>
+        </button></Link>
       </CardContent>
       <div
         className="feature-card-image"

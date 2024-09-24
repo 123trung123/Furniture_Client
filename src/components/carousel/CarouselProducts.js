@@ -35,7 +35,7 @@ export default function CarouselProducts({ products }) {
               </CardSubtitle>
               {/* <Divider/> */}
               <CardText>
-                <p>{item.category}</p>
+                {/* <p>{item.category}</p> */}
               </CardText>
               <div className="image-container"></div>
             </CardBody>
