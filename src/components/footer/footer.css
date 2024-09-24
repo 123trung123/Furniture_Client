@@ -51,3 +51,22 @@
   line-height: 1.6;
 }
 
+.footer-icon {
+  color: inherit; /* Default color */
+  transition: color 0.3s ease; /* Smooth transition */
+}
+
+.footer-icon:hover {
+  color: #3b5998; /* Facebook color */
+}
+
+.footer-icon.instagram:hover {
+  color: #e4405f; /* Instagram color */
+}
+
+.footer-icon.youtube:hover {
+  color: #ff0000; /* YouTube color */
+}
+.footer-icon {
+  text-decoration: none; /* Remove underline */
+}

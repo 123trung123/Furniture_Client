@@ -142,4 +142,22 @@ button {
  button:hover .button-text {
   color: #fff;
  }
- 
+ .learn-more {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+}
+
+.button-text {
+  visibility: hidden; /* Ẩn văn bản ban đầu */
+  opacity: 0; /* Thiết lập độ mờ */
+  transition: visibility 0s, opacity 0.5s linear; /* Thêm hiệu ứng chuyển tiếp */
+}
+
+.learn-more:hover .button-text {
+  visibility: visible; /* Hiện văn bản khi hover */
+  opacity: 1; /* Đưa văn bản về trạng thái rõ ràng */
+}

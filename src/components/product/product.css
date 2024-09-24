@@ -116,3 +116,10 @@
 .contain_button{
   width: 100%;
 }
+.button-custom {
+  color: white; /* Màu chữ mặc định */
+}
+
+.button-custom:hover {
+  color: white !important; /* Giữ nguyên màu chữ khi hover */
+}

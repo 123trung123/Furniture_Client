@@ -1,19 +1,19 @@
 import React from "react";
 import { Container, Row, Col } from "reactstrap";
-import { Link } from "react-router-dom";
 import logo from "../../resources/logo.png";
+import { Box, Typography, Link, Grid } from "@mui/material";
 import "./footer.css";
 
 export default function Footer() {
   return (
     <div
       className="footer"
-      style={{ backgroundColor: "#111", color: "", padding: "0 0" }}
+      style={{ backgroundColor: "#C5A689", padding: "60px 0 12px 0" }} // Match background color
     >
       <Container>
         <Row>
           {/* Logo and company description */}
-          <Col xs={12} sm={6} md={4}>
+          <Col xs={12} sm={6} md={6}>
             <div>
               <img
                 src={logo}
@@ -21,7 +21,7 @@ export default function Footer() {
                 className="footer-logo"
                 style={{ width: "150px" }}
               />
-              <p style={{ marginTop: "1rem" }}>
+              <p style={{ marginTop: "1rem", width: "400px" }}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </p>
@@ -29,78 +29,40 @@ export default function Footer() {
           </Col>
 
           {/* Useful Links */}
-          <Col xs={12} sm={6} md={4}>
-            <h6>Liên Kết Hữu Ích</h6>
+          <Col xs={12} sm={6} md={3}>
+            <h6 style={{ marginBottom: "20px" , color:"#603E31"}}>Liên Kết Hữu Ích</h6>
             <p>
-              <i
-                class="fa-solid fa-house"
-                style={{ marginRight: "0.5rem" }}
-              ></i>
-              <Link to="/" className="footer-link">
-                Trang Chủ
-              </Link>
+              <i className="fa-solid fa-house" style={{ marginRight: "0.5rem" }}></i>
+              <Link to="/" className="footer-link" color="#603E31">Trang Chủ</Link>
             </p>
             <p>
-              <i
-                class="fa-solid fa-bag-shopping"
-                style={{ marginRight: "0.5rem" }}
-              ></i>
-              <Link to="/products" className="footer-link">
-                Sản Phẩm
-              </Link>
+              <i className="fa-solid fa-bag-shopping" style={{ marginRight: "0.5rem" }}></i>
+              <Link to="/products" className="footer-link" color="#603E31" >Sản Phẩm</Link>
             </p>
             <p>
-              <i
-                class="fa-solid fa-cart-shopping"
-                style={{ marginRight: "0.5rem" }}
-              ></i>
-
-              <Link to="/cart" className="footer-link">
-                Giỏ Hàng
-              </Link>
+              <i className="fa-solid fa-cart-shopping" style={{ marginRight: "0.5rem" }}></i>
+              <Link to="/cart" className="footer-link" color="#603E31">Giỏ Hàng</Link>
             </p>
             <p>
-              <i
-                class="fa-solid fa-envelope"
-                style={{ marginRight: "0.5rem" }}
-              ></i>
-
-              <Link to="/contact" className="footer-link">
-                Liên Hệ
-              </Link>
+              <i className="fa-solid fa-envelope" style={{ marginRight: "0.5rem" }}></i>
+              <Link to="/contact" className="footer-link" color="#603E31">Liên Hệ</Link>
             </p>
           </Col>
 
           {/* About Us */}
-          <Col xs={12} sm={6} md={4}>
-            <h6>About Us</h6>
+          <Col xs={12} sm={6} md={3}>
+            <h6 style={{ marginBottom: "20px" ,color:"#603E31"}} >About Us</h6>
             <p>
-              <i
-                class="fa-solid fa-circle-info"
-                style={{ marginRight: "0.5rem" }}
-              ></i>
-              <Link to="/aboutus" className="footer-link">
-                Thông Tin Thêm
-              </Link>
+              <i className="fa-solid fa-circle-info" style={{ marginRight: "0.5rem" }}></i>
+              <Link to="/aboutus" className="footer-link" color="#603E31">Thông Tin Thêm</Link>
             </p>
             <p>
-              <i
-                class="fa-solid fa-circle-info"
-                style={{ marginRight: "0.5rem" }}
-              ></i>
-
-              <Link to="/reviews" className="footer-link">
-                Đánh Gía
-              </Link>
+              <i className="fa-solid fa-circle-info" style={{ marginRight: "0.5rem" }}></i>
+              <Link to="/reviews" className="footer-link" color="#603E31">Đánh Gía</Link>
             </p>
             <p>
-              <i
-                class="fa-solid fa-circle-info"
-                style={{ marginRight: "0.5rem" }}
-              ></i>
-              <Link to="/aboutus" className="footer-link">
-                Terms of Service
-              </Link>
+              <i className="fa-solid fa-circle-info" style={{ marginRight: "0.5rem" }}></i>
+              <Link to="/terms" className="footer-link" color="#603E31">Terms of Service</Link>
             </p>
           </Col>
         </Row>
@@ -111,31 +73,73 @@ export default function Footer() {
         {/* Contact and Social Media */}
         <Row className="justify-content-between">
           <Col>
-            <p>Địa Chỉ: Lorem ipsum dolor sit amet</p>
-            <p>Thứ Hai - Thứ Sáu: 9am - 5pm</p>
-            <p style={{ textDecoration: "underline" }}>
-              <Link to="/contact" className="footer-link">
-                Gửi Tin Nhắn
-              </Link>
-            </p>
+            <Box sx={{ padding: "2rem", color: "#fff" }}>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <Typography variant="h6" color="#603E31">Thông Tin Liên Hệ</Typography>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <Typography variant="body1" color="#603E31">Địa Chỉ: Lorem ipsum dolor sit amet</Typography>
+                  <Typography variant="body1" color="#603E31">Thứ Hai - Thứ Sáu: 9am - 5pm</Typography>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <Typography variant="body1">
+                    <Link 
+                      to="/contact" 
+                      className="footer-link" 
+                      style={{ textDecoration: "none", color: "#603E31" }} // Remove underline
+                    >
+                      Gửi Tin Nhắn
+                    </Link>
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Box>
           </Col>
           <Col className="text-right">
             <a
               href="#"
               className="footer-icon"
-              style={{ color: "inherit", marginRight: "1rem" }}
+              style={{
+                marginRight: "1rem",
+                width: "100px",
+                height: "100px",
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                textDecoration: "none", // Remove underline
+              }}
             >
-              <i class="fa-brands fa-facebook"></i>
+              <i className="fa-brands fa-facebook" style={{ fontSize: "30px" }}></i>
             </a>
             <a
               href="#"
-              className="footer-icon"
-              style={{ color: "inherit", marginRight: "1rem" }}
+              className="footer-icon instagram"
+              style={{
+                marginRight: "1rem",
+                width: "100px",
+                height: "100px",
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                textDecoration: "none", // Remove underline
+              }}
             >
-              <i class="fa-brands fa-instagram"></i>
+              <i className="fa-brands fa-instagram" style={{ fontSize: "30px" }}></i>
             </a>
-            <a href="#" className="footer-icon" style={{ color: "inherit" }}>
-              <i class="fa-brands fa-youtube"></i>
+            <a
+              href="#"
+              className="footer-icon youtube"
+              style={{
+                width: "100px",
+                height: "100px",
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                textDecoration: "none", // Remove underline
+              }}
+            >
+              <i className="fa-brands fa-youtube" style={{ fontSize: "30px" }}></i>
             </a>
           </Col>
         </Row>

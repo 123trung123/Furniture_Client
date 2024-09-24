@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col, CardBody } from 'reactstrap';
+import './brand.css';
 import Slider from 'react-slick';
 
 import 'slick-carousel/slick/slick.css';
@@ -16,7 +17,7 @@ const slideImages = [img1, img2, img3, img4, img5];
 const sliderSettings = {
   dots: false,
   infinite: true,
-  slidesToShow: 4,
+  slidesToShow: 3,
   slidesToScroll: 1,
   autoplay: true,
   speed: 3500,
@@ -36,14 +37,14 @@ export default function Relatedbrand() {
         <Col xs={12}>
           <Slider {...sliderSettings}>
             {slideImages.map((img, index) => (
-              <div key={index}>
-                <img
-                  className="logo_brand"
-                  src={img}
-                  alt={`brand-${index}`}
-                  style={{ width: '100px', height: 'auto', margin: '0 auto' }}
-                />
-              </div>
+              <div key={index} className="image-container1">
+              <img
+                className="logo_brand"
+                
+                src={img}
+                alt={`brand-${index}`}
+              />
+            </div>
             ))}
           </Slider>
         </Col>
