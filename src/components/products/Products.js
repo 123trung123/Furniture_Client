@@ -93,14 +93,14 @@ export default function Products() {
 
         <div style={{ height: "40px" }}></div>
         <Col style={{ margin: "0 auto", padding: 0 }}>
-          <Row className="filter-col " style={{ width: "100%", marginTop: "20px", justifyContent: "center"  }}>
+          <Row className="filter-col" style={{  marginTop: "20px", justifyContent: "center"  }}>
             <Col >
               <p className="Title4 frontage-bold" data-aos="zoom-out-down">
                 Product categories<span className="innerTitle4"></span>
               </p>
               <Card
                 className="filter-container"
-                style={{ margin: "1rem 0", padding: "1rem", display: "flex", justifyContent: "center" }}
+                style={{ margin: "1rem 0", padding: "", display: "flex", justifyContent: "center" }}
               >
                 <CardBody >
                   <input
