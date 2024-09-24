@@ -7,6 +7,7 @@ import {
   Grid,
   Link,
 } from '@mui/material';
+import { NavLink } from "react-router-dom";
 import './contact.css';
 
 const ContactUs = () => {
@@ -14,15 +15,15 @@ const ContactUs = () => {
     <section className="contact-sales-embedded-chat">
   <Container>
     <Box className="contact-header" sx={{ padding: { xs: '20px 10px', md: '40px' } }}>
-      <Typography variant="h4" sx={{ fontSize: { xs: '1.5rem', md: '2rem' } }}>Contact Us About HubSpot's Software</Typography>
+      <Typography variant="h4" sx={{ fontSize: { xs: '1.5rem', md: '2rem' } }}>Hãy liên hệ chúng tôi</Typography>
       <Typography variant="body1" mt={2} sx={{ fontSize: { xs: '0.875rem', md: '1rem' } }}>
-        We'd love to show you how you can get more traffic and leads, increase your sales productivity, provide better customer service, or all of the above! Here are a few ways to reach out to our sales team.
+       Chúng tôi rất sẵn lòng cung cấp các sản phẩm nội thất trang trọng và hiện đại nhất đến quý khách. 
       </Typography>
     </Box>
 
     <Box className="hsg-numbers__wrapper">
       <Grid container spacing={2}>
-        {['Call us directly', 'Chat with our sales team', 'Get a product demo'].map((text, index) => (
+        {['Gọi trực tiếp', 'Chat với chúng tôi', 'Xem sản phẩm'].map((text, index) => (
           <Grid item xs={12} md={4} key={index}>
             <Box className="contact-card" display="flex" alignItems="center" flexDirection="column" sx={{ padding: { xs: '10px', md: '20px' } }}>
               <img
@@ -33,11 +34,11 @@ const ContactUs = () => {
               <Typography variant="h6" align="center" sx={{ fontSize: { xs: '1rem', md: '1.25rem' } }}>{text}</Typography>
               <Typography align="center">
                 {index === 0 ? (
-                  <Link href="tel:+6569556000">+65 6 955 6000</Link>
+                  <NavLink href="tel:+6569556000">+65 6 955 6000</NavLink>
                 ) : index === 1 ? (
-                  <Link href="#chat-with-sales" style={{ textDecoration: 'none' }}>Chat with our sales team</Link>
+                  <NavLink to="/contact" style={{ textDecoration: 'none' }}>Chatting now</NavLink>
                 ) : (
-                  <Link href="#book-a-meeting-with-sales" style={{ textDecoration: 'none' }}>Get a demo</Link>
+                  <NavLink to="/products" style={{ textDecoration: 'none' }}>Click for more</NavLink>
                 )}
               </Typography>
               {index === 0 && (

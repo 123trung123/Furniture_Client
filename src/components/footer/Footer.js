@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Row, Col } from "reactstrap";
 import logo from "../../resources/logo.png";
 import { Box, Typography, Link, Grid } from "@mui/material";
+import { NavLink } from "react-router-dom";
 import "./footer.css";
 
 export default function Footer() {
@@ -33,19 +34,19 @@ export default function Footer() {
             <h6 style={{ marginBottom: "20px" , color:"#603E31"}}>Liên Kết Hữu Ích</h6>
             <p>
               <i className="fa-solid fa-house" style={{ marginRight: "0.5rem" }}></i>
-              <Link to="/" className="footer-link" color="#603E31">Trang Chủ</Link>
+              <NavLink  to="/" className="footer-link" color="#603E31">Trang Chủ</NavLink >
             </p>
             <p>
               <i className="fa-solid fa-bag-shopping" style={{ marginRight: "0.5rem" }}></i>
-              <Link to="/products" className="footer-link" color="#603E31" >Sản Phẩm</Link>
+              <NavLink  to="/products" className="footer-link" color="#603E31" >Sản Phẩm</NavLink >
             </p>
             <p>
               <i className="fa-solid fa-cart-shopping" style={{ marginRight: "0.5rem" }}></i>
-              <Link to="/cart" className="footer-link" color="#603E31">Giỏ Hàng</Link>
+              <NavLink  to="/cart" className="footer-link" color="#603E31">Giỏ Hàng</NavLink >
             </p>
             <p>
               <i className="fa-solid fa-envelope" style={{ marginRight: "0.5rem" }}></i>
-              <Link to="/contact" className="footer-link" color="#603E31">Liên Hệ</Link>
+              <NavLink  to="/contact" className="footer-link" color="#603E31">Liên Hệ</NavLink >
             </p>
           </Col>
 
@@ -54,15 +55,15 @@ export default function Footer() {
             <h6 style={{ marginBottom: "20px" ,color:"#603E31"}} >About Us</h6>
             <p>
               <i className="fa-solid fa-circle-info" style={{ marginRight: "0.5rem" }}></i>
-              <Link to="/aboutus" className="footer-link" color="#603E31">Thông Tin Thêm</Link>
+              <NavLink  to="/aboutus" className="footer-link" color="#603E31">Thông Tin Thêm</NavLink >
             </p>
             <p>
               <i className="fa-solid fa-circle-info" style={{ marginRight: "0.5rem" }}></i>
-              <Link to="/reviews" className="footer-link" color="#603E31">Đánh Gía</Link>
+              <NavLink  to="/reviews" className="footer-link" color="#603E31">Đánh Gía</NavLink >
             </p>
             <p>
               <i className="fa-solid fa-circle-info" style={{ marginRight: "0.5rem" }}></i>
-              <Link to="/terms" className="footer-link" color="#603E31">Terms of Service</Link>
+              <NavLink  to="/terms" className="footer-link" color="#603E31">Terms of Service</NavLink >
             </p>
           </Col>
         </Row>
