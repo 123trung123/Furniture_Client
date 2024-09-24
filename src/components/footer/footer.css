@@ -70,3 +70,24 @@
 .footer-icon {
   text-decoration: none; /* Remove underline */
 }
+.footer-icons {
+  display: flex;
+  flex-direction: row; /* Horizontal on larger screens */
+}
+
+.footer-icon {
+  margin: 0.5rem; /* Spacing */
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none; /* Remove underline */
+}
+
+@media (max-width: 767px) { /* Adjust for mobile screens */
+  .footer-icons {
+    flex-direction: column; /* Stack vertically */
+    align-items: center; /* Center icons */
+  }
+}

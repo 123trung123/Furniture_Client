@@ -13,9 +13,12 @@ import {
   Container,
   Dropdown,
 } from "reactstrap";
+import SearchIcon from "@mui/icons-material/Search";
+import TextField from "@mui/material/TextField";
 import { Link } from "react-router-dom";
 import logo from "../../resources/logo.png";
 import "./header.css";
+import { IconButton } from "@mui/material";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,79 +26,70 @@ export default function Header() {
   const toggle = () => setIsOpen(!isOpen);
   const [searchOpen, setSearchOpen] = useState(false);
   const toggleSearch = () => setSearchOpen(!searchOpen);
+  const [searchText, setSearchText] = useState("");
+  const handleSearchClick = () => {
+    setSearchOpen(true);
+  };
 
   return (
     <div className="header">
       <Container>
-        <Navbar className="navbar-expand-md" light>
-          {/* Logo */}
-          <Link to="/">
-            <img className="logo" src={logo} alt="Furniture Corner" />
-          </Link>
+      <Navbar className="navbar-expand-md" light>
+  {/* Logo */}
+  <Link to="/">
+    <img className="logo" src={logo} alt="Furniture Corner" />
+  </Link>
 
-          <NavbarToggler onClick={toggle} />
+  <NavbarToggler onClick={toggle} />
 
-          {/* Navigation Links */}
-          <Collapse isOpen={isOpen} navbar>
-            <Nav className="navbar-nav m-auto align-items-center" navbar>
-              <NavItem>
-                <Link to="/" className="header-item">
-                  Home
-                </Link>
-              </NavItem>
-              {/* <NavItem>
-                <Link to="/new-arrivals" className="header-item">
-                  New Arrivals
-                </Link>
-              </NavItem> */}
-              <NavItem>
-                <Link to="/products" className="header-item">
-                  Products
-                </Link>
-              </NavItem>
-              <NavItem>
-                <Link to="/contact" className="header-item">
-                  Contact
-                </Link>
-              </NavItem>
+  {/* Navigation Links */}
+  <Collapse isOpen={isOpen} navbar>
+    <Nav className="navbar-nav m-auto align-items-center" navbar>
+      <NavItem>
+        <Link to="/" className="header-item">
+          Home
+        </Link>
+      </NavItem>
+      <NavItem>
+        <Link to="/products" className="header-item">
+          Products
+        </Link>
+      </NavItem>
+      <NavItem>
+        <Link to="/contact" className="header-item">
+          Contact
+        </Link>
+      </NavItem>
 
-              {/* Dropdown for Categories */}
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret className="header-item">
-                  Categories
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem>Living Room</DropdownItem>
-                  <DropdownItem>Bedroom</DropdownItem>
-                  <DropdownItem>Bedroom</DropdownItem>
-                  <DropdownItem>Bedroom</DropdownItem>
-                  <DropdownItem>Bedroom</DropdownItem>
-                  <DropdownItem>Bedroom</DropdownItem>
-                  <DropdownItem>Bedroom</DropdownItem>
-                  <DropdownItem>Bedroom</DropdownItem>
-                  <DropdownItem>Bedroom</DropdownItem>
-                  <DropdownItem>Bedroom</DropdownItem>
-                  <DropdownItem divider />
-                </DropdownMenu>
-              </UncontrolledDropdown>
-            </Nav>
+      {/* Dropdown for Categories */}
+      <UncontrolledDropdown nav inNavbar>
+        <DropdownToggle nav caret className="header-item">
+          Categories
+        </DropdownToggle>
+        <DropdownMenu right>
+          <DropdownItem>Living Room</DropdownItem>
+          <DropdownItem>Bedroom</DropdownItem>
+        </DropdownMenu>
+      </UncontrolledDropdown>
+    </Nav>
 
-            {/* Icons and Cart */}
-            <div className="header-icons">
-              <Dropdown isOpen={searchOpen} toggle={toggleSearch} inNavbar>
-                <DropdownToggle className="btn_general better_button header-icon">
-                  <i className="fa-solid fa-magnifying-glass"></i>
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <div className="px-1">
-                    <input
-                      type="text"
-                      placeholder="Search products..."
-                      className="form-control"
-                    />
-                  </div>
-                </DropdownMenu>
-              </Dropdown>
+    {/* Icons and Cart */}
+    <div className="header-icons">
+      {searchOpen ? (
+        <TextField
+          variant="outlined"
+          placeholder="Tìm kiếm sản phẩm..."
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+          onBlur={() => setSearchOpen(false)}
+          autoFocus
+          className={`search-animation ${searchOpen ? 'search-open' : ''}`} // Thêm class ở đây
+        />
+      ) : (
+        <IconButton onClick={toggleSearch} className="header-icon">
+          <SearchIcon />
+        </IconButton>
+      )}
               <Link to="/user" className="header-icon">
                 <i className="fa-solid fa-gear"></i>
               </Link>

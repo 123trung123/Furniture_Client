@@ -64,45 +64,45 @@ export default function Products() {
   );
 
   return (
-    <Container style={{ overflow: "hidden", marginTop:"15px" }}>
+    <Container style={{ overflow: "hidden", marginTop: "15px" }}>
       <Row>
-      <div className="banner_container" style={{ position: "relative" }}>
-      <Card className="" data-aos="fade-left" data-aos-duration="1500">
-    <video className="product-card-video" autoPlay loop muted>
-      <source src={videoSrc} type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
-    <p className="Title frontage-bold" data-aos="zoom-out-down" style={{
-        position: "absolute",
-        top: "-10px", // Move the text 50px above the video
-        left: "0",
-        width: "100%",
-        height: "10%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        color: "#fff", // Text color
-        textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)", // Optional shadow for better visibility
-        zIndex: 1 // Ensure text is above the video
-      }}>
-      Products<span className="innerTitle"></span>
-    </p>
-</Card>
-
-</div>
+        <div className="banner_container" style={{ position: "relative" }}>
+          <Card className="" data-aos="fade-left" data-aos-duration="1500">
+            <video className="product-card-video" autoPlay loop muted>
+              <source src={videoSrc} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <p
+              className="Title frontage-bold"
+              data-aos="zoom-out-down"
+              style={{
+                position: "absolute",
+                top: "-10px", // Move the text 50px above the video
+                left: "0",
+                width: "100%",
+                height: "10%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "#fff", // Text color
+                textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)", // Optional shadow for better visibility
+                zIndex: 1, // Ensure text is above the video
+              }}
+            >
+              <span className="innerTitle"></span>
+            </p>
+          </Card>
+        </div>
 
         <div style={{ height: "40px" }}></div>
         <Col style={{ margin: "0 auto", padding: 0 }}>
-          <Row className="filter-col" style={{  marginTop: "20px", justifyContent: "center"  }}>
-            <Col >
+          <Row className="filter-col">
+            <Col>
               <p className="Title4 frontage-bold" data-aos="zoom-out-down">
                 Product categories<span className="innerTitle4"></span>
               </p>
-              <Card
-                className="filter-container"
-                style={{ margin: "1rem 0", padding: "", display: "flex", justifyContent: "center" }}
-              >
-                <CardBody >
+              <Card className="filter-container">
+                <CardBody>
                   <input
                     type="text"
                     placeholder="Filter by name"
@@ -147,11 +147,11 @@ export default function Products() {
             <Col style={{ display: "flex", justifyContent: "center" }}>
               <Pagination
                 count={totalPages}
-                page={currentPage + 1} 
-                onChange={(event, value) => setCurrentPage(value - 1)} 
-                shape="rounded" 
-                variant="outlined" 
-                color="primary" 
+                page={currentPage + 1}
+                onChange={(event, value) => setCurrentPage(value - 1)}
+                shape="rounded"
+                variant="outlined"
+                color="primary"
               />
             </Col>
           </Row>

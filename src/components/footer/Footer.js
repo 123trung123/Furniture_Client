@@ -31,39 +31,76 @@ export default function Footer() {
 
           {/* Useful Links */}
           <Col xs={12} sm={6} md={3}>
-            <h6 style={{ marginBottom: "20px" , color:"#603E31"}}>Liên Kết Hữu Ích</h6>
+            <h6 style={{ marginBottom: "20px", color: "#603E31" }}>
+              Liên Kết Hữu Ích
+            </h6>
             <p>
-              <i className="fa-solid fa-house" style={{ marginRight: "0.5rem" }}></i>
-              <NavLink  to="/" className="footer-link" color="#603E31">Trang Chủ</NavLink >
+              <i
+                className="fa-solid fa-house"
+                style={{ marginRight: "0.5rem" }}
+              ></i>
+              <NavLink to="/" className="footer-link" color="#603E31">
+                Trang Chủ
+              </NavLink>
             </p>
             <p>
-              <i className="fa-solid fa-bag-shopping" style={{ marginRight: "0.5rem" }}></i>
-              <NavLink  to="/products" className="footer-link" color="#603E31" >Sản Phẩm</NavLink >
+              <i
+                className="fa-solid fa-bag-shopping"
+                style={{ marginRight: "0.5rem" }}
+              ></i>
+              <NavLink to="/products" className="footer-link" color="#603E31">
+                Sản Phẩm
+              </NavLink>
             </p>
             <p>
-              <i className="fa-solid fa-cart-shopping" style={{ marginRight: "0.5rem" }}></i>
-              <NavLink  to="/cart" className="footer-link" color="#603E31">Giỏ Hàng</NavLink >
+              <i
+                className="fa-solid fa-cart-shopping"
+                style={{ marginRight: "0.5rem" }}
+              ></i>
+              <NavLink to="/cart" className="footer-link" color="#603E31">
+                Giỏ Hàng
+              </NavLink>
             </p>
             <p>
-              <i className="fa-solid fa-envelope" style={{ marginRight: "0.5rem" }}></i>
-              <NavLink  to="/contact" className="footer-link" color="#603E31">Liên Hệ</NavLink >
+              <i
+                className="fa-solid fa-envelope"
+                style={{ marginRight: "0.5rem" }}
+              ></i>
+              <NavLink to="/contact" className="footer-link" color="#603E31">
+                Liên Hệ
+              </NavLink>
             </p>
           </Col>
 
           {/* About Us */}
           <Col xs={12} sm={6} md={3}>
-            <h6 style={{ marginBottom: "20px" ,color:"#603E31"}} >About Us</h6>
+            <h6 style={{ marginBottom: "20px", color: "#603E31" }}>About Us</h6>
             <p>
-              <i className="fa-solid fa-circle-info" style={{ marginRight: "0.5rem" }}></i>
-              <NavLink  to="/aboutus" className="footer-link" color="#603E31">Thông Tin Thêm</NavLink >
+              <i
+                className="fa-solid fa-circle-info"
+                style={{ marginRight: "0.5rem" }}
+              ></i>
+              <NavLink to="/aboutus" className="footer-link" color="#603E31">
+                Thông Tin Thêm
+              </NavLink>
             </p>
             <p>
-              <i className="fa-solid fa-circle-info" style={{ marginRight: "0.5rem" }}></i>
-              <NavLink  to="/reviews" className="footer-link" color="#603E31">Đánh Gía</NavLink >
+              <i
+                className="fa-solid fa-circle-info"
+                style={{ marginRight: "0.5rem" }}
+              ></i>
+              <NavLink to="/reviews" className="footer-link" color="#603E31">
+                Đánh Gía
+              </NavLink>
             </p>
             <p>
-              <i className="fa-solid fa-circle-info" style={{ marginRight: "0.5rem" }}></i>
-              <NavLink  to="/terms" className="footer-link" color="#603E31">Terms of Service</NavLink >
+              <i
+                className="fa-solid fa-circle-info"
+                style={{ marginRight: "0.5rem" }}
+              ></i>
+              <NavLink to="/terms" className="footer-link" color="#603E31">
+                Terms of Service
+              </NavLink>
             </p>
           </Col>
         </Row>
@@ -77,71 +114,53 @@ export default function Footer() {
             <Box sx={{ padding: "2rem", color: "#fff" }}>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
-                  <Typography variant="h6" color="#603E31">Thông Tin Liên Hệ</Typography>
+                  <Typography variant="h6" color="#603E31">
+                    Thông Tin Liên Hệ
+                  </Typography>
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <Typography variant="body1" color="#603E31">Địa Chỉ: Lorem ipsum dolor sit amet</Typography>
-                  <Typography variant="body1" color="#603E31">Thứ Hai - Thứ Sáu: 9am - 5pm</Typography>
+                  <Typography variant="body1" color="#603E31">
+                    Địa Chỉ: Lorem ipsum dolor sit amet
+                  </Typography>
+                  <Typography variant="body1" color="#603E31">
+                    Thứ Hai - Thứ Sáu: 9am - 5pm
+                  </Typography>
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <Typography variant="body1">
-                    <Link 
-                      to="/contact" 
-                      className="footer-link" 
+                    <NavLink
+                      to="/contact"
+                      className="footer-link"
                       style={{ textDecoration: "none", color: "#603E31" }} // Remove underline
                     >
                       Gửi Tin Nhắn
-                    </Link>
+                    </NavLink>
                   </Typography>
                 </Grid>
               </Grid>
             </Box>
           </Col>
           <Col className="text-right">
-            <a
-              href="#"
-              className="footer-icon"
-              style={{
-                marginRight: "1rem",
-                width: "100px",
-                height: "100px",
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
-                textDecoration: "none", // Remove underline
-              }}
-            >
-              <i className="fa-brands fa-facebook" style={{ fontSize: "30px" }}></i>
-            </a>
-            <a
-              href="#"
-              className="footer-icon instagram"
-              style={{
-                marginRight: "1rem",
-                width: "100px",
-                height: "100px",
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
-                textDecoration: "none", // Remove underline
-              }}
-            >
-              <i className="fa-brands fa-instagram" style={{ fontSize: "30px" }}></i>
-            </a>
-            <a
-              href="#"
-              className="footer-icon youtube"
-              style={{
-                width: "100px",
-                height: "100px",
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
-                textDecoration: "none", // Remove underline
-              }}
-            >
-              <i className="fa-brands fa-youtube" style={{ fontSize: "30px" }}></i>
-            </a>
+            <div className="footer-icons">
+              <a href="#" className="footer-icon">
+                <i
+                  className="fa-brands fa-facebook"
+                  style={{ fontSize: "30px" }}
+                ></i>
+              </a>
+              <a href="#" className="footer-icon instagram">
+                <i
+                  className="fa-brands fa-instagram"
+                  style={{ fontSize: "30px" }}
+                ></i>
+              </a>
+              <a href="#" className="footer-icon youtube">
+                <i
+                  className="fa-brands fa-youtube"
+                  style={{ fontSize: "30px" }}
+                ></i>
+              </a>
+            </div>
           </Col>
         </Row>
 

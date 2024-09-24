@@ -185,6 +185,10 @@
   padding: 0 10px; /* Padding bên trái và bên phải */
 }
 
+.header-item {
+  text-decoration: none; /* Remove underline */
+}
+
 @keyframes shake {
   0%, 100% { transform: rotate(0deg); }
   25% { transform: rotate(10deg); }
@@ -230,4 +234,69 @@
 
 .totop:hover .scroll-text {
   display: inline; /* Hiển thị text khi hover */
+}
+.header-item {
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Ensure it inherits the text color */
+}
+
+.header-item:hover {
+  color: #4D2E21; /* Change color on hover */
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+}
+
+.search-animation {
+  visibility: hidden; /* Ẩn khi không mở */
+}
+
+.search-open {
+  visibility: visible; /* Hiện khi mở */
+  animation: slideIn 3s ease forwards; /* Animation khi mở */
+}
+
+.search-closed {
+  animation: slideOut 3s ease forwards; /* Animation khi đóng */
+}
+
+.header-icons {
+  display: flex;
+  align-items: center;
+  position: relative; /* Để chứa các phần tử con có position: absolute */
+}
+
+.search-animation {
+  position: absolute; /* Đặt ô tìm kiếm ở vị trí tuyệt đối */
+  top: 50%; /* Căn giữa theo chiều dọc */
+  left: 0; /* Đặt ở bên trái */
+  transform: translateY(-50%) translateX(-20px); /* Đưa nó lên giữa và sang trái */
+  transition: all 3s ease; /* Thêm hiệu ứng chuyển tiếp */
+  opacity: 0; /* Ẩn ô tìm kiếm */
+  visibility: hidden; /* Ẩn ô tìm kiếm */
+}
+
+.search-open {
+  opacity: 1; /* Hiện ô tìm kiếm */
+  transform: translateY(-50%) translateX(0); /* Về vị trí ban đầu */
+  visibility: visible; /* Hiện ô tìm kiếm */
 }

@@ -15,6 +15,7 @@
 }
 .filter-container {
   box-sizing: border-box;
+  width: 1320px;
 }
 .filter-input,
 .filter-select {
@@ -47,4 +48,23 @@
 
 .innerTitle {
   /* Any additional styles for inner title */
+}
+
+
+.filter-col {
+  display: flex;
+  justify-content: center; /* Căn giữa nội dung theo chiều ngang */
+  margin-top: 20px; /* Khoảng cách phía trên */
+}
+
+.filter-container {
+  width: 100%; /* Đặt chiều rộng là 100% để có thể căn giữa */
+  max-width: 1320px; /* Chiều rộng tối đa */
+  margin: 1rem auto; /* Căn giữa với khoảng cách trên và dưới */
+}
+
+@media (max-width: 768px) {
+  .filter-container {
+    width: 90%; /* Chiều rộng 90% trên màn hình nhỏ */
+  }
 }
