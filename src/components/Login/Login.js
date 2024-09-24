@@ -12,67 +12,76 @@ import {
 import "./Login.css";
 import Aos from "aos";
 import axios from "axios";
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUser } from '../../redux/userSlice';
 
 export default function Login() {
   const [email, setEmail] = useState(""); 
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState(""); // For registration
   const [isRegister, setIsRegister] = useState(false); // To toggle between login and register
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  // const [loading, setLoading] = useState(false);
+  // const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [formData, setFormData] = useState({ username: '', password: '' });
+  const dispatch = useDispatch();
+  const { loading, error } = useSelector((state) => state.user);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(loginUser(formData));
+  };
   useEffect(() => {
     Aos.init();
     window.scrollTo(0, 0);
   }, []);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError("");
-    setSuccess("");
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setLoading(true);
+  //   setError("");
+  //   setSuccess("");
 
-    if (isRegister && password !== confirmPassword) {
-      setError("Passwords do not match");
-      setLoading(false);
-      return;
-    }
+  //   if (isRegister && password !== confirmPassword) {
+  //     setError("Passwords do not match");
+  //     setLoading(false);
+  //     return;
+  //   }
 
-    try {
-      const response = await axios.get("https://66a07b747053166bcabb8c62.mockapi.io/PracticeApi");
-      const users = response.data;
+  //   try {
+  //     const response = await axios.get("https://66a07b747053166bcabb8c62.mockapi.io/PracticeApi");
+  //     const users = response.data;
 
-      if (isRegister) {
-        const userExists = users.find((user) => user.email === email);
-        if (userExists) {
-          setError("User already exists.");
-        } else {
-          // Register the new user by POSTing to the API
-          await axios.post("https://66a07b747053166bcabb8c62.mockapi.io/PracticeApi", {
-            email: email,
-            password: password,
-          });
-          setSuccess("Registration successful! Please login.");
-          setIsRegister(false);
-        }
-      } else {
-        // Check if the user exists for login
-        const user = users.find((user) => user.email === email && user.password === password);
-        if (user) {
-          setSuccess("Login successful!");
-        } else {
-          setError("Invalid email or password.");
-        }
-      }
-    } catch (err) {
-      setError("Something went wrong. Please try again.");
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
+  //     if (isRegister) {
+  //       const userExists = users.find((user) => user.email === email);
+  //       if (userExists) {
+  //         setError("User already exists.");
+  //       } else {
+  //         // Register the new user by POSTing to the API
+  //         await axios.post("https://66a07b747053166bcabb8c62.mockapi.io/PracticeApi", {
+  //           email: email,
+  //           password: password,
+  //         });
+  //         setSuccess("Registration successful! Please login.");
+  //         setIsRegister(false);
+  //       }
+  //     } else {
+  //       // Check if the user exists for login
+  //       const user = users.find((user) => user.email === email && user.password === password);
+  //       if (user) {
+  //         setSuccess("Login successful!");
+  //       } else {
+  //         setError("Invalid email or password.");
+  //       }
+  //     }
+  //   } catch (err) {
+  //     setError("Something went wrong. Please try again.");
+  //     console.error(err);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+  
   return (
     <div className="bg-login">
       <Container fluid>
@@ -105,26 +114,22 @@ export default function Login() {
                   {error && <p className="text-danger">{error}</p>}
 
                   <FormGroup className="mt-4 mb-4">
-                    <Input
-                      id="exampleEmail"
-                      name="email"
-                      placeholder="Email"
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                    />
+                  <Input
+          type="text"
+          name="username"
+          placeholder="Username"
+          value={formData.username}
+          onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+        />
                   </FormGroup>
                   <FormGroup>
-                    <Input
-                      id="examplePassword"
-                      name="password"
-                      placeholder="Password"
-                      type="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                    />
+                  <Input
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={formData.password}
+          onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+        />
                   </FormGroup>
 
                   {isRegister && (
@@ -144,7 +149,7 @@ export default function Login() {
                   <FormGroup check>
                     <Input type="checkbox" /> <Label check>Remember me</Label>
                   </FormGroup>
-                  <Button className="btn btn-success button-form my-3" disabled={loading}>
+                  <Button type="submit" className="btn btn-success button-form my-3" disabled={loading}>
                     {loading ? "Please wait..." : isRegister ? "Register" : "Login"}
                   </Button>
                   <hr />

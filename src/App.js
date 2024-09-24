@@ -8,6 +8,7 @@ import DetailPage from "./pages/DetailPage/DetailPage";
 import ProductPage from "./pages/productpage/ProductPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import SettingPage from "./pages/SettingPage/SettingPage";
+import UserList from "./components/Login/UserList";
 export default function App() {
   return (
     <div>
@@ -22,6 +23,7 @@ export default function App() {
           {/* <Route path="/detail/:id" element={<DetailPage />} /> */}
           <Route path="/products/detail/:id" element={<DetailPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/listuser" element={<UserList />} />
           <Route path="/user" element={<SettingPage />} />
           <Route path="/reviews" element={<Home/>} />
         </Routes>
