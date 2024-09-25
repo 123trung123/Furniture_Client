@@ -13,8 +13,9 @@ import "./detail.css";
 export default function Detail() {
   const { id } = useParams();
   const { products } = useSelector((state) => state.shop);
-  const pro = products.find((item) => item.id === id);
   const dispatch = useDispatch();
+
+  const pro = products.find((item) => item.id === Number(id));
 
   useEffect(() => {
     dispatch(getList());
@@ -47,7 +48,14 @@ export default function Detail() {
             data-aos="fade-right"
             data-aos-duration="1500"
           >
-            <img className="thumbnail" src={pro.picture} alt={pro.name} />
+            {pro.productImages.map((image) => (
+              <img
+                key={image.id}
+                className="thumbnail"
+                src={`http://localhost:8080/api/furniture/getimages/${image.imageUrl}`} // Update to use the API URL with image names
+                alt={pro.name}
+              />
+            ))}
           </div>
         </Col>
         <Col md={4}>
@@ -59,17 +67,17 @@ export default function Detail() {
             <CardBody>
               <h4 className="product-name">{pro.name}</h4>
               <div className="rating">
-                {[...Array(Math.round(pro.rating))].map((_, index) => (
+                {[...Array(Math.round(pro.rating || 0))].map((_, index) => (
                   <StarIcon key={index} style={{ color: "gold" }} />
                 ))}
               </div>
 
-              <p className="product-description">{pro.description}</p>
+              <p className="product-description">{pro.description || "No description available"}</p>
               <h5 className="product-price">
                 ${pro.price}{" "}
-                <span className="original-price">${pro.originalPrice}</span>
+                {pro.originalPrice && <span className="original-price">${pro.originalPrice}</span>}
               </h5>
-              <p className="product-category">Category: {pro.category}</p>
+              <p className="product-category">Category: {pro.category?.name || "Unknown"}</p>
               <Button color="primary" onClick={() => handleAdd(pro)}>
                 Add to Cart
               </Button>
@@ -82,7 +90,8 @@ export default function Detail() {
           >
             <CardBody>
               <h5 className="product-description">Details:</h5>
-              <p className="product-description">{pro.descriptionLong}</p>
+              <p className="product-description">{pro.description || "No additional details"}</p>
+              <p className="product-description">{pro.descriptionLong || "No additional details"}</p>
             </CardBody>
           </Card>
         </Col>

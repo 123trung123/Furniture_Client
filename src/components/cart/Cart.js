@@ -8,7 +8,6 @@ import {
   CardBody,
   CardTitle,
   CardText,
-  CardFooter,
 } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteFromCart, updateCartItem, setCartNull } from "../../redux/cartSlice";
@@ -68,21 +67,13 @@ export default function Cart() {
   return (
     <Container fluid className="divborder">
       <div className="py-4">
-        <h4
-          className="lander mb-4 font-weight-bold"
-          data-aos="fade-down"
-          data-aos-duration="1500"
-        >
+        <h4 className="lander mb-4 font-weight-bold" data-aos="fade-down" data-aos-duration="1500">
           Cart
         </h4>
 
         <Row>
           <Col md="8">
-            <Card
-              className="p-3 shadow-sm bg-white rounded"
-              data-aos="fade-right"
-              data-aos-duration="1000"
-            >
+            <Card className="p-3 shadow-sm bg-white rounded" data-aos="fade-right" data-aos-duration="1000">
               {cart.length === 0 ? (
                 <p>Your cart is empty</p>
               ) : (
@@ -101,7 +92,7 @@ export default function Cart() {
                         <Col xs="3">
                           <div className="d-flex align-items-center">
                             <img
-                              src={item.picture}
+                              src={`http://localhost:8080/api/furniture/getimages/${item.productImages[0]?.imageUrl}`} // Get the first image
                               alt={item.name}
                               style={{
                                 height: "80px",
@@ -113,7 +104,7 @@ export default function Cart() {
                           </div>
                         </Col>
                         <Col xs="2">
-                          <p>${item.price.toFixed(2)}</p>
+                          <p>${item.price}</p>
                         </Col>
                         <Col xs="3">
                           <div className="d-flex align-items-center">
@@ -123,6 +114,7 @@ export default function Cart() {
                               onClick={() => updateById(item, 0)}
                               className="mr-2"
                               style={{ minWidth: "30px" }}
+                              disabled={item.quantity <= 1} // Disable button if quantity is 1
                             >
                               -
                             </Button>
@@ -139,13 +131,10 @@ export default function Cart() {
                           </div>
                         </Col>
                         <Col xs="2">
-                          <p>${(item.price * item.quantity).toFixed(2)}</p>
+                          <p>${(item.price * item.quantity).toFixed(2)}</p> {/* Format subtotal */}
                         </Col>
                         <Col xs="1">
-                          <Button
-                            color="danger"
-                            onClick={() => handleDelete(item.id)}
-                          >
+                          <Button color="danger" onClick={() => handleDelete(item.id)}>
                             Delete
                           </Button>
                         </Col>
@@ -164,14 +153,14 @@ export default function Cart() {
                   Cart totals
                 </CardTitle>
                 <CardText>
-                  <strong>Subtotal:</strong> ${totalPrice.toFixed(2)}
+                  <strong>Subtotal:</strong> ${totalPrice.toFixed(2)} {/* Format total price */}
                 </CardText>
                 <CardText className="text-muted font-weight-bold">
-                  <strong>Total:</strong> ${totalPrice.toFixed(2)}
+                  <strong>Total:</strong> ${totalPrice.toFixed(2)} {/* Format total price */}
                 </CardText>
-                <button className="cart-button" onClick={handlePay}>
+                <Button className="cart-button" onClick={handlePay}>
                   Mua
-                </button>
+                </Button>
               </CardBody>
             </Card>
           </Col>

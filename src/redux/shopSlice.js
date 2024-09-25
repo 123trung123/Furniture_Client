@@ -1,205 +1,6 @@
-// import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-// import axios from "axios";
-// // const initialState = {
-// //   products:[],
-// //   status:"start",
-// //   error:""
-// // };
-
-// const BASE_URL = "https://66a07b747053166bcabb8c62.mockapi.io/Products";
-
-// export const getList = createAsyncThunk("shop/getList", async () => {
-//   const res = await axios.get(BASE_URL);
-//   return res.data;
-// });
-
-// export const getAll = createAsyncThunk(
-//   "shop/getAll",
-//   async ({ currentPage, limit }, thunkAPI) => {
-//     const url = `${BASE_URL}/list?page=${currentPage}&size=${limit}`;
-//     try {
-//       const response = await axios.get(url);
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.response.data);
-//     }
-//   }
-// );
-
-// export const deleteProductById = createAsyncThunk(
-//   "shop/deleteById",
-//   async (id, thunkAPI) => {
-//     const url = `${BASE_URL}/delete/${id}`;
-//     try {
-//       const response = await axios.delete(url);
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.response.data);
-//     }
-//   }
-// );
-
-// export const saveProduct = createAsyncThunk(
-//   "shop/save",
-//   async (productData, thunkAPI) => {
-//     const url = `${BASE_URL}/save`;
-//     try {
-//       const response = await axios.post(url, productData);
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.response.data);
-//     }
-//   }
-// );
-
-// export const editProduct = createAsyncThunk(
-//   "shop/editProduct",
-//   async ({ id, product }, thunkAPI) => {
-//     const url = BASE_URL + `/update/${id}`;
-//     try {
-//       console.log(product);
-//       const response = await axios.put(url, product);
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.response.data);
-//     }
-//   }
-// );
-
-// export const getProductByName = createAsyncThunk(
-//   "shop/getByName",
-//   async (name, thunkAPI) => {
-//     const url = `${BASE_URL}/get?name=${name}`;
-//     try {
-//       const response = await axios.get(url);
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.response.data);
-//     }
-//   }
-// );
-
-// export const uploadImage = createAsyncThunk(
-//   "shop/uploadImage",
-//   async ({ id, formData }, thunkAPI) => {
-//     const url = `${BASE_URL}/uploadimage/${id}`;
-//     try {
-//       const response = await axios.post(url, formData, {
-//         headers: {
-//           "Content-Type": "multipart/form-data",
-//         },
-//       });
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.response.data);
-//     }
-//   }
-// );
-
-// export const getImages = createAsyncThunk(
-//   "shop/getImages",
-//   async (id, thunkAPI) => {
-//     const url = `${BASE_URL}/getimage/${id}`;
-//     try {
-//       const response = await axios.get(url);
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.response.data);
-//     }
-//   }
-// );
-
-// export const deleteImage = createAsyncThunk(
-//   "shop/deleteImage",
-//   async (id, thunkAPI) => {
-//     const url = `${BASE_URL}/deleteimage/${id}`;
-//     try {
-//       const response = await axios.delete(url);
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.response.data);
-//     }
-//   }
-// );
-
-// const shopSlice = createSlice({
-//   name: "shop",
-//   initialState: {
-//     products: [],
-//     totalPages: 0,
-//     status: null,
-//     error: null,
-//     message: null,
-//     images: [],
-//   },
-//   reducers: {
-//     resetStatusAndMessage: (state) => {
-//       state.status = null;
-//       state.message = null;
-//       state.error = null;
-//     },
-//   },
-//   extraReducers: (builder) => {
-//     builder
-//     .addCase(getList.pending, (state) => {
-//       state.status = "loading";
-//     })
-//     .addCase(getList.fulfilled, (state, action) => {
-//       state.status = "succeeded";
-//       state.products = action.payload;
-//     })
-//     .addCase(getList.rejected, (state, action) => {
-//       state.status = "failed";
-//       state.error = action.error.message;
-//     })
-//       .addCase(getAll.fulfilled, (state, action) => {
-//         state.products = action.payload.data.productList;
-//         state.totalPages = action.payload.data.totalPages;
-//       })
-//       .addCase(deleteProductById.fulfilled, (state, action) => {
-//         state.status = action.payload.status;
-//         state.message = action.payload.message;
-//         state.products = state.products.filter(
-//           (product) => product.id !== action.payload.data
-//         );
-//       })
-//       .addCase(saveProduct.fulfilled, (state, action) => {
-//         state.products = [...state.products, action.payload.data];
-//         state.status = action.payload.status;
-//         state.message = action.payload.message;
-//       })
-//       .addCase(editProduct.fulfilled, (state, action) => {
-//         state.status = action.payload.status;
-//         state.message = action.payload.message;
-//         state.products = state.products.map((product) =>
-//           product.id === action.payload.data.id ? action.payload.data : product
-//         );
-//       })
-//       .addCase(getProductByName.fulfilled, (state, action) => {
-//         state.products = action.payload;
-//         state.status = action.payload.status;
-//       })
-//       .addCase(uploadImage.fulfilled, (state, action) => {
-//         state.status = action.payload.status;
-//       })
-//       .addCase(getImages.fulfilled, (state, action) => {
-//         state.images = action.payload.data;
-//         state.status = action.payload.status;
-//         state.message = action.payload.message;
-//       })
-//       .addCase(deleteImage.fulfilled, (state, action) => {
-//         state.images = state.images.filter(
-//           (image) => image.id !== action.payload.data
-//         );
-//       });
-//   },
-// });
-
-// export const { resetStatusAndMessage } = shopSlice.actions;
-// export default shopSlice.reducer;
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import axiosInstance from '../utils/axiosInstance';
+import axiosInstance from "../utils/axiosInstance";
 
 const BASE_URL = "http://localhost:8080/api/furniture";
 
@@ -246,6 +47,7 @@ export const getAllProducts = createAsyncThunk(
 //   }
 // );
 // Add a new product
+
 export const addProduct = createAsyncThunk(
   "shop/addProduct",
   async (productData, thunkAPI) => {
@@ -257,7 +59,33 @@ export const addProduct = createAsyncThunk(
     }
   }
 );
-
+// Get images for a specific product by ID
+export const getProductImages = createAsyncThunk(
+  "shop/getProductImages",
+  async (id, thunkAPI) => {
+    const url = `${BASE_URL}/images/${id}`; // Adjust the endpoint as needed
+    try {
+      const response = await axios.get(url);
+      return response.data.data; // Assuming response structure contains data field
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+export const getProductImagesbyName = createAsyncThunk(
+  "shop/getProductImagesByName",
+  async (I, thunkAPI) => {
+    const url = `${BASE_URL}/getimages/${I}`; // Ensure this is correct
+    try {
+      const response = await axios.get(url);
+      console.log("Response from API:", response.data); // Log the entire response
+      return response.data.data; // Ensure this structure is correct
+    } catch (error) {
+      console.error("Error fetching images:", error.response.data);
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
 // Update a product by ID
 export const updateProduct = createAsyncThunk(
   "shop/updateProduct",
@@ -381,17 +209,17 @@ const shopSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-    .addCase(getList.pending, (state) => {
-      state.status = "loading";
-    })
-    .addCase(getList.fulfilled, (state, action) => {
-      state.products = action.payload;
-      state.status = "succeeded";
-    })
-    .addCase(getList.rejected, (state, action) => {
-      state.status = "failed";
-      state.error = action.payload || action.error.message;
-    })
+      .addCase(getList.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getList.fulfilled, (state, action) => {
+        state.products = action.payload;
+        state.status = "succeeded";
+      })
+      .addCase(getList.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.payload || action.error.message;
+      })
       .addCase(getAllProducts.pending, (state) => {
         state.status = "loading";
       })
@@ -424,6 +252,36 @@ const shopSlice = createSlice({
       .addCase(uploadProductImages.fulfilled, (state, action) => {
         state.images = action.payload;
         state.message = "Images uploaded successfully";
+      })
+      .addCase(getProductImages.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getProductImages.fulfilled, (state, action) => {
+        // Assuming images for a specific product can be stored in the product object
+        const productId = action.meta.arg; // The product ID passed to the thunk
+        const product = state.products.find(
+          (product) => product.id === productId
+        );
+        if (product) {
+          product.images = action.payload; // Store images in the respective product
+        }
+        state.status = "succeeded";
+      })
+      .addCase(getProductImages.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.payload || action.error.message;
+      })
+      .addCase(getProductImagesbyName.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(getProductImagesbyName.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.productImages = action.payload; // Update the productImages with the fetched data
+      })
+      .addCase(getProductImagesbyName.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload; // Store the error message
       });
   },
 });

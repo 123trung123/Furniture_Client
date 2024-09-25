@@ -90,9 +90,9 @@ export default function Header() {
           <SearchIcon />
         </IconButton>
       )}
-              <Link to="/user" className="header-icon">
+              {/* <Link to="/user" className="header-icon">
                 <i className="fa-solid fa-gear"></i>
-              </Link>
+              </Link> */}
               <Link to="/login" className="header-icon">
                 <i className="fa-solid fa-user"></i>
               </Link>
@@ -101,7 +101,7 @@ export default function Header() {
               </Link>
             </div>
 
-            <NavbarText className="total-text">Total: $0.00</NavbarText>
+            {/* <NavbarText className="total-text">Total: $0.00</NavbarText> */}
           </Collapse>
         </Navbar>
       </Container>
