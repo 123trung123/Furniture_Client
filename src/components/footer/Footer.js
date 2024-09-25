@@ -22,7 +22,7 @@ export default function Footer() {
                 className="footer-logo"
                 style={{ width: "150px" }}
               />
-              <p style={{ marginTop: "1rem", width: "400px" }}>
+              <p style={{ marginTop: "1rem", width: "" }}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </p>

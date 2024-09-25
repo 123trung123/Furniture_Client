@@ -9,10 +9,10 @@ import "./products.css";
 
 export default function Products() {
   const dispatch = useDispatch();
-  const { products, totalPages } = useSelector((state) => state.shop); // Make sure 'totalPages' is returned from your API.
+  const { products, totalPages } = useSelector((state) => state.shop);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
-  const productsPerPage = 6; // 6 products per page (can be adjusted)
+  const productsPerPage = 6; // 6 products per page
 
   // Fetch products with pagination
   useEffect(() => {
@@ -22,20 +22,35 @@ export default function Products() {
   }, [dispatch, currentPage]);
 
   useEffect(() => {
-    setFilteredProducts(products); // Update filtered products when products are fetched
+    setFilteredProducts(products);
   }, [products]);
 
   const handleAddToCart = (item) => {
     // Handle add to cart logic
   };
 
+  // Normalize text function to handle diacritics and case-insensitive comparison
+  const normalizeText = (text) => {
+    if (typeof text !== "string") {
+      return ""; // Return an empty string if text is not a string
+    }
+    return text
+      .normalize("NFD") // Normalize to NFD (Normalization Form Decomposition)
+      .replace(/[\u0300-\u036f]/g, "") // Remove diacritics
+      .toLowerCase(); // Convert to lowercase for case-insensitive matching
+  };
+
   const handleFilter = ({ name, category }) => {
     const filtered = products.filter((product) => {
+      const normalizedProductName = normalizeText(product.name);
+      const normalizedProductCategory = normalizeText(product.category.name);
+
       const matchesName = name
-        ? product.name.toLowerCase().includes(name.toLowerCase())
+        ? normalizedProductName.includes(normalizeText(name))
         : true;
+
       const matchesCategory = category
-        ? product.category.toLowerCase() === category.toLowerCase()
+        ? normalizedProductCategory === normalizeText(category)
         : true;
 
       return matchesName && matchesCategory;
@@ -57,7 +72,7 @@ export default function Products() {
   };
 
   return (
-    <Container style={{ overflow: "hidden", marginTop: "15px" }}>
+    <Container style={{marginTop: "15px" }}>
       <Row>
         <Col style={{ margin: "0 auto", padding: 0 }}>
           <Row className="filter-col">
@@ -78,16 +93,11 @@ export default function Products() {
                     className="filter-select p-1 py-3"
                   >
                     <option value="">All</option>
-                    <option value="Keyboard">Keyboard</option>
-                    <option value="Controller">Controller</option>
-                    <option value="Mouse">Mouse</option>
-                    <option value="Headset">Headset</option>
-                    <option value="Case">Case</option>
-                    <option value="Power Supply">Power Supply</option>
-                    <option value="Chair">Chair</option>
-                    <option value="Card Fans">Card Fans</option>
-                    <option value="Monitor">Monitor</option>
-                    <option value="SSD">SSD</option>
+                    <option value="Bàn">Bàn</option>
+                    <option value="Ghế">Ghế</option>
+                    <option value="Giường">Giường</option>
+                    <option value="Sofa">Sofa</option>
+                    <option value="Tủ">Tủ</option>
                   </select>
                 </CardBody>
               </Card>

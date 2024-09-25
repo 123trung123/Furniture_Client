@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Button, Row, Col, Card, CardBody } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,14 +14,26 @@ export default function Detail() {
   const { id } = useParams();
   const { products } = useSelector((state) => state.shop);
   const dispatch = useDispatch();
-
+  
   const pro = products.find((item) => item.id === Number(id));
+
+  const [mainImage, setMainImage] = useState("");
 
   useEffect(() => {
     dispatch(getList());
     Aos.init();
     window.scrollTo(0, 0);
   }, [dispatch]);
+
+  useEffect(() => {
+    if (pro && pro.productImages && pro.productImages.length > 0) {
+      setMainImage(pro.productImages[0].imageUrl); // Set the first image as the main image by default
+    }
+  }, [pro]);
+
+  const handleImageClick = (imageUrl) => {
+    setMainImage(imageUrl); // Update the main image when a thumbnail is clicked
+  };
 
   const handleAdd = (product) => {
     Swal.fire({
@@ -48,14 +60,24 @@ export default function Detail() {
             data-aos="fade-right"
             data-aos-duration="1500"
           >
-            {pro.productImages.map((image) => (
-              <img
-                key={image.id}
-                className="thumbnail"
-                src={`http://localhost:8080/api/furniture/getimages/${image.imageUrl}`} // Update to use the API URL with image names
-                alt={pro.name}
-              />
-            ))}
+            {/* Display the main image */}
+            <img
+              className="main-image"
+              src={`http://localhost:8080/api/furniture/getimages/${mainImage}`}
+              alt={pro.name}
+            />
+            {/* Display the small thumbnail images */}
+            <div className="thumbnail-selection">
+              {pro.productImages.slice(0, 3).map((image, index) => (
+                <img
+                  key={image.id}
+                  className={`thumbnail ${mainImage === image.imageUrl ? 'selected' : ''}`}
+                  src={`http://localhost:8080/api/furniture/getimages/${image.imageUrl}`}
+                  alt={`${pro.name} thumbnail ${index + 1}`}
+                  onClick={() => handleImageClick(image.imageUrl)}
+                />
+              ))}
+            </div>
           </div>
         </Col>
         <Col md={4}>
@@ -78,7 +100,7 @@ export default function Detail() {
                 {pro.originalPrice && <span className="original-price">${pro.originalPrice}</span>}
               </h5>
               <p className="product-category">Category: {pro.category?.name || "Unknown"}</p>
-              <Button color="primary" onClick={() => handleAdd(pro)}>
+              <Button className="button-custom" onClick={() => handleAdd(pro)}>
                 Add to Cart
               </Button>
             </CardBody>
@@ -99,12 +121,12 @@ export default function Detail() {
       <Row className="justify-content-center">
         <Col md={8} className="text-center">
           <Link to="/">
-            <Button color="secondary" className="m-3">
+            <Button className="button-custom m-3">
               Trang Chủ
             </Button>
           </Link>
           <Link to="/products">
-            <Button color="secondary" className="m-3">
+            <Button className="button-custom m-3">
               Cửa Hàng
             </Button>
           </Link>

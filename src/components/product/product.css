@@ -35,7 +35,7 @@
 }
 .view-details-button {
   text-decoration: none;
-  color: #007bff;
+  color: #cabf8c;
 }
 .view-details-button:hover {
   text-decoration: underline;
@@ -117,9 +117,14 @@
   width: 100%;
 }
 .button-custom {
-  color: white; /* Màu chữ mặc định */
+  background-color: bisque !important;
+  color: black !important; /* Optional: Change text color to make it stand out */
+  border: none;
+  /* transition: background-color 0.3s ease; */
+  transition: 0.3s;
 }
 
 .button-custom:hover {
-  color: white !important; /* Giữ nguyên màu chữ khi hover */
+  color: rgb(82, 82, 82) !important;
+  scale: 1.05;
 }

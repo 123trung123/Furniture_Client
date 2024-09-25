@@ -53,7 +53,7 @@ export default function LandingPage() {
 
   return (
     <div className="lander">
-      <Container fluid className="holder">
+      <Container style={{ overflow: "hidden"}} fluid className="holder">
         <div className="first">
           <div
             className="backgroundLanding"
@@ -158,7 +158,7 @@ export default function LandingPage() {
         <Features />
 
         <div style={{ padding: "3rem 0" }}>
-          <Container>
+          <Container style={{ overflow: "hidden"}}>
             <div className="d-flex">
               <p
                 className="Title"
