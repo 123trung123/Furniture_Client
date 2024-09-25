@@ -73,3 +73,59 @@
 .button-TT {
   background-color: #0dcaf0;
 }
+
+/* Login.css */
+
+.bg-login {
+  background: url('../../resources/login_img/bg_login.png') no-repeat center center fixed; /* Use your background image */
+  background-size: cover; /* Cover the entire area */
+  height: 100vh; /* Full viewport height */
+  position: relative; /* For absolute positioning of overlay */
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  backdrop-filter: blur(10px); /* Blur effect */
+  z-index: 1; /* Ensure it's behind the content */
+}
+
+.content {
+  position: relative; /* Allow content to be on top of the overlay */
+  z-index: 2; /* Ensure content is above the overlay */
+  padding: 20px; /* Adjust padding as needed */
+}
+
+.left-box, .login-box {
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
+  .overlay {
+    display: none; /* Hide the overlay on smaller screens */
+  }
+  .left-box {
+    display: none; /* Adjust as necessary */
+  }
+
+  .login-box {
+    width: 100%;
+    padding: 10px; /* Adjust padding */
+  }
+
+  .title-welcome {
+    font-size: 1.5em; /* Adjust title size */
+  }
+
+  .content {
+    padding: 10px; /* Adjust content padding */
+  }
+
+  .button-form {
+    width: 100%; /* Full width buttons */
+  }
+}
