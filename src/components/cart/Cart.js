@@ -20,6 +20,7 @@ import "./cart.css";
 export default function Cart() {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cart);
+  const userInfo = useSelector((state) => state.user.userInfo); // Get user info from Redux
   const totalPrice = cart.reduce(
     (total, item) => total + item.price * item.quantity,
     0
@@ -51,7 +52,7 @@ export default function Cart() {
   };
 
   const handlePay = () => {
-    const userEmail = "user@example.com";
+    const userEmail = userInfo?.username || "user@example.com"; // Get the username from userInfo
     const templateParams = {
       email: userEmail,
       message: `${userEmail} đã mua hàng! Tổng giá trị đơn hàng là: $${totalPrice.toFixed(2)}`,
