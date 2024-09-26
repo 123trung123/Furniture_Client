@@ -102,7 +102,7 @@ export default function Header() {
                 <i className="fa-solid fa-gear"></i>
               </Link> */}
               <div className="header-icons">
-                <Dropdown isOpen={searchOpen} toggle={toggleSearch} inNavbar>
+                {/* <Dropdown isOpen={searchOpen} toggle={toggleSearch} inNavbar>
                   <DropdownToggle className="btn_general better_button header-icon">
                     <i className="fa-solid fa-magnifying-glass"></i>
                   </DropdownToggle>
@@ -115,13 +115,15 @@ export default function Header() {
                       />
                     </div>
                   </DropdownMenu>
-                </Dropdown>
+                </Dropdown> */}
                 <div
                   className="header-icon-wrapper"
                   onMouseEnter={() => setHover(true)}
                   onMouseLeave={() => setHover(false)}
                 >
+                  <DropdownToggle className="btn_general better_button header-icon">
                     <i className="fa-solid fa-gear"></i>
+                  </DropdownToggle>
 
                   {hover && (
                     <div className="user-info-dropdown">
