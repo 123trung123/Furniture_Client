@@ -71,8 +71,14 @@ export default function Products() {
     handleFilter({ name, category: e.target.value });
   };
 
+  // Calculate the current products to display based on currentPage and productsPerPage
+  const currentProducts = filteredProducts.slice(
+    currentPage * productsPerPage,
+    (currentPage + 1) * productsPerPage
+  );
+
   return (
-    <Container style={{marginTop: "15px" }}>
+    <Container style={{ marginTop: "15px" }}>
       <Row>
         <Col style={{ margin: "0 auto", padding: 0 }}>
           <Row className="filter-col">
@@ -105,7 +111,7 @@ export default function Products() {
           </Row>
 
           <Row lg={10} md={10} sm={10} xs={12}>
-            {filteredProducts.map((item, index) => (
+            {currentProducts.map((item, index) => (
               <Product
                 key={index}
                 products={item}
@@ -117,7 +123,7 @@ export default function Products() {
           <Row style={{ marginTop: "20px", justifyContent: "center" }}>
             <Col style={{ display: "flex", justifyContent: "center" }}>
               <Pagination
-                count={totalPages}
+                count={Math.ceil(filteredProducts.length / productsPerPage)}
                 page={currentPage + 1}
                 onChange={(event, value) => setCurrentPage(value - 1)}
                 shape="rounded"
