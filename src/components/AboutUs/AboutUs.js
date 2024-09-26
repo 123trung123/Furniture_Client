@@ -4,8 +4,8 @@ import 'aos/dist/aos.css';
 import { Container, Row, Col, Card, CardBody, CardTitle, CardText, CardImg } from 'reactstrap';
 import CountUp from 'react-countup';
 import img1 from '../../resources/table.jpg';
-import img2 from '../../resources/table.jpg';
-import img3 from '../../resources/table.jpg';
+import img2 from '../../resources/1.jpg';
+import img3 from '../../resources/6.jpg';
 
 export default function AboutUs() {
   useEffect(() => {
@@ -27,7 +27,18 @@ export default function AboutUs() {
           {images.map((img, index) => (
             <Col xs={12} sm={6} md={4} key={index}>
               <Card body className="text-center" data-aos="fade-up" data-aos-delay={300 + index * 300}>
-                <CardImg top src={img} alt={`Feature ${index + 1}`} style={{ width: '100%', height: 'auto', marginBottom: '1rem' }} />
+                {/* Increased the CardImg height for a taller image */}
+                <CardImg
+                  top
+                  src={img}
+                  alt={`Feature ${index + 1}`}
+                  style={{
+                    width: '100%',
+                    height: '250px', // Increased height for a taller image
+                    objectFit: 'cover',
+                    marginBottom: '1rem',
+                  }}
+                />
                 <CardBody>
                   <CardTitle tag="h3" style={{ color: 'black' }}>
                     <CountUp start={0} end={counts[index]} duration={4.5} />+

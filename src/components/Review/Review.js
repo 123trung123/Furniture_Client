@@ -26,9 +26,9 @@ export default function Review() {
           </Typography>
           <Grid container spacing={6}>
             {[
-              { name: "Alice Johnson", text: "Absolutely love the products! Great quality and fast shipping.", rating: "★★★★★", image: img1 },
-              { name: "Bob Smith", text: "Excellent customer service and a wide range of options. Highly recommend!", rating: "★★★★☆", image: img2 },
-              { name: "Charlie Brown", text: "The best shopping experience I've had. Will definitely be back!", rating: "★★★★☆", image: img2 }
+              { name: "Alice Johnson", text: "Tôi hoàn toàn yêu thích các sản phẩm! Chất lượng tuyệt vời và giao hàng nhanh chóng.", rating: "★★★★★", image: img1 },
+              { name: "Bob Smith", text: "Dịch vụ chăm sóc khách hàng tuyệt vời và nhiều lựa chọn đa dạng. Rất đáng để giới thiệu!", rating: "★★★★☆", image: img2 },
+              { name: "Charlie Brown", text: "Trải nghiệm mua sắm tốt nhất mà tôi từng có. Chắc chắn sẽ quay lại!", rating: "★★★★☆", image: img2 }
             ].map((review, index) => (
               <Grid
                 item

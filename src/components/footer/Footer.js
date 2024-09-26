@@ -14,7 +14,7 @@ export default function Footer() {
       <Container>
         <Row>
           {/* Logo and company description */}
-          <Col xs={12} sm={6} md={6}>
+          <Col xs={12} sm={6} md={6} style={{ paddingLeft: "60px", paddingRight: "60px" }}>
             <div>
               <img
                 src={logo}
@@ -98,9 +98,9 @@ export default function Footer() {
                 className="fa-solid fa-circle-info"
                 style={{ marginRight: "0.5rem" }}
               ></i>
-              <NavLink to="/terms" className="footer-link" color="#603E31">
+              {/* <NavLink to="/terms" className="footer-link" color="#603E31">
                 Terms of Service
-              </NavLink>
+              </NavLink> */}
             </p>
           </Col>
         </Row>
@@ -120,7 +120,7 @@ export default function Footer() {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <Typography variant="body1" color="#603E31">
-                    Địa Chỉ: Lorem ipsum dolor sit amet
+                    Địa Chỉ: 135 
                   </Typography>
                   <Typography variant="body1" color="#603E31">
                     Thứ Hai - Thứ Sáu: 9am - 5pm

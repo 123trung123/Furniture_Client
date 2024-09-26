@@ -75,7 +75,7 @@ export default function Header() {
 
     {/* Icons and Cart */}
     <div className="header-icons">
-      {searchOpen ? (
+      {/* {searchOpen ? (
         <TextField
           variant="outlined"
           placeholder="Tìm kiếm sản phẩm..."
@@ -89,7 +89,7 @@ export default function Header() {
         <IconButton onClick={toggleSearch} className="header-icon">
           <SearchIcon />
         </IconButton>
-      )}
+      )} */}
               {/* <Link to="/user" className="header-icon">
                 <i className="fa-solid fa-gear"></i>
               </Link> */}
