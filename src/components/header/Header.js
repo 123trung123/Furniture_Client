@@ -19,7 +19,8 @@ import { Link } from "react-router-dom";
 import logo from "../../resources/logo.png";
 import "./header.css";
 import { IconButton } from "@mui/material";
-
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../redux/userSlice";
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -30,39 +31,46 @@ export default function Header() {
   const handleSearchClick = () => {
     setSearchOpen(true);
   };
+  const [hover, setHover] = useState(false); // State to manage hover effect
+  const dispatch = useDispatch();
+  const { userInfo } = useSelector((state) => state.user); // Get userInfo from Redux state
+
+  const handleLogout = () => {
+    dispatch(logout()); // Dispatch logout action
+  };
 
   return (
     <div className="header">
       <Container>
-      <Navbar className="navbar-expand-md" light>
-  {/* Logo */}
-  <Link to="/">
-    <img className="logo" src={logo} alt="Furniture Corner" />
-  </Link>
+        <Navbar className="navbar-expand-md" light>
+          {/* Logo */}
+          <Link to="/">
+            <img className="logo" src={logo} alt="Furniture Corner" />
+          </Link>
 
-  <NavbarToggler onClick={toggle} />
+          <NavbarToggler onClick={toggle} />
 
-  {/* Navigation Links */}
-  <Collapse isOpen={isOpen} navbar>
-    <Nav className="navbar-nav m-auto align-items-center" navbar>
-      <NavItem>
-        <Link to="/" className="header-item">
-          Home
-        </Link>
-      </NavItem>
-      <NavItem>
-        <Link to="/products" className="header-item">
-          Products
-        </Link>
-      </NavItem>
-      <NavItem>
-        <Link to="/contact" className="header-item">
-          Contact
-        </Link>
-      </NavItem>
+          {/* Navigation Links */}
+          <Collapse isOpen={isOpen} navbar>
+            <Nav className="navbar-nav m-auto align-items-center" navbar>
+              <NavItem>
+                <Link to="/" className="header-item">
+                  Home
+                </Link>
+              </NavItem>
+              <NavItem>
+                <Link to="/products" className="header-item">
+                  Products
+                </Link>
+              </NavItem>
+              <NavItem>
+                <Link to="/contact" className="header-item">
+                  Contact
+                </Link>
+              </NavItem>
 
-      {/* Dropdown for Categories */}
-      {/* <UncontrolledDropdown nav inNavbar>
+              {/* Dropdown for Categories */}
+              {/* <UncontrolledDropdown nav inNavbar>
         <DropdownToggle nav caret className="header-item">
           Categories
         </DropdownToggle>
@@ -71,11 +79,11 @@ export default function Header() {
           <DropdownItem>Bedroom</DropdownItem>
         </DropdownMenu>
       </UncontrolledDropdown> */}
-    </Nav>
+            </Nav>
 
-    {/* Icons and Cart */}
-    <div className="header-icons">
-      {/* {searchOpen ? (
+            {/* Icons and Cart */}
+            <div className="header-icons">
+              {/* {searchOpen ? (
         <TextField
           variant="outlined"
           placeholder="Tìm kiếm sản phẩm..."
@@ -93,9 +101,46 @@ export default function Header() {
               {/* <Link to="/user" className="header-icon">
                 <i className="fa-solid fa-gear"></i>
               </Link> */}
-              <Link to="/login" className="header-icon">
-                <i className="fa-solid fa-user"></i>
-              </Link>
+              <div className="header-icons">
+                <Dropdown isOpen={searchOpen} toggle={toggleSearch} inNavbar>
+                  <DropdownToggle className="btn_general better_button header-icon">
+                    <i className="fa-solid fa-magnifying-glass"></i>
+                  </DropdownToggle>
+                  <DropdownMenu right>
+                    <div className="px-1">
+                      <input
+                        type="text"
+                        placeholder="Search products..."
+                        className="form-control"
+                      />
+                    </div>
+                  </DropdownMenu>
+                </Dropdown>
+                <div
+                  className="header-icon-wrapper"
+                  onMouseEnter={() => setHover(true)}
+                  onMouseLeave={() => setHover(false)}
+                >
+                    <i className="fa-solid fa-gear"></i>
+
+                  {hover && (
+                    <div className="user-info-dropdown">
+                      {userInfo ? (
+                        <div className="user-info">
+                          <p>{userInfo.username}</p>
+                          <button className="logout-btn" onClick={handleLogout}>
+                            Logout
+                          </button>
+                        </div>
+                      ) : (
+                        <Link to="/login" className="header-icon">
+                          <i className="fa-solid fa-user"></i>
+                        </Link>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
               <Link to="/cart" className="header-icon">
                 <i className="fa-solid fa-cart-shopping"></i>
               </Link>
