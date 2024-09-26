@@ -41,7 +41,7 @@ export default function CarouselProducts({ products }) {
               <img
                 className="image_carousel"
                 src={`http://localhost:8080/api/furniture/getimages/${item.productImages[0].imageUrl}`} 
-                alt={item.name} // Provide a descriptive alt text
+                alt={item.name} 
               />
             </Link>
             <Link className="btn-chi-tiet2" to={`/detail/${item.id}`}>

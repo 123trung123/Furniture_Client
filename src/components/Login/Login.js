@@ -33,7 +33,7 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(loginUser({ email, password }));
+    dispatch(loginUser(formData));
   };
 
   return (
@@ -61,13 +61,13 @@ export default function Login() {
                   </Box>
                   <form onSubmit={handleSubmit}>
                     <FormControl fullWidth variant="outlined" margin="normal">
-                      <InputLabel>Email</InputLabel>
+                      <InputLabel>Username</InputLabel>
                       <OutlinedInput
-                        type="email"
-                        label="Email"
-                        value={formData.email}
+                        type="text"
+                        label="Username"
+                        value={formData.username}
                         onChange={(e) =>
-                          setFormData({ ...formData, email: e.target.value })
+                          setFormData({ ...formData, username: e.target.value })
                         }
                         required
                       />
@@ -164,8 +164,7 @@ export default function Login() {
                             fill="#FBBC05"
                           />
                           <path
-                            d="M12 4.8c1.8 0 3.4.6 4.7 1.8l3.5-3.5C18.1 1.2 15.3 0 12 0 7 0 2.6 2.3.5 5.8l3.6 2.4c1-3.1 3.8-5.3 7.1-5.3z"
-                            fill="#EA4335"
+                            d="M12 4.8c1.8 0 3.4.6 4.7 1.8l3.5-3.5C18.1 1.2 15.3 0 12 0 7 0 2.6 2.3.5 5.8l3.6 2.4c1-3.1 3.8-5.3..."
                           />
                         </svg>
                       }
@@ -188,15 +187,13 @@ export default function Login() {
                           viewBox="0 0 24 24"
                         >
                           <path
-                            d="M22.67 0H1.33A1.33 1.33 0 0 0 0 1.33v21.34A1.33 1.33 0 0 0 1.33 24H12.8v-9.33H9.92v-3.67h2.88V8.04c0-2.84 1.75-4.4 4.3-4.4 1.22 0 2.28.1 2.6.13v3.02l-1.78.01c-1.39 0-1.67.66-1.67 1.63v2.14h3.34l-.44 3.67h-2.9V24h5.69A1.33 1.33 0 0 0 24 22.67V1.33A1.33 1.33 0 0 0 22.67 0z"
+                            d="M12 2.04c-5.5 0-10 4.48-10 10 0 4.96 3.66 9.07 8.44 9.88v-6.99H7.91v-2.89h2.54V9.97c0-2.52 1.5-3.92 3.79-3.92 1.1 0 2.25.19 2.25.19v2.5h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.89h-2.34v6.99c4.78-.81 8.44-4.92 8.44-9.88 0-5.52-4.5-10-10-10z"
                             fill="#3b5998"
                           />
                         </svg>
                       }
                     >
-                      {isRegister
-                        ? "Sign up with Facebook"
-                        : "Login with Facebook"}
+                      {isRegister ? "Sign up with Facebook" : "Login with Facebook"}
                     </Button>
                   </Box>
                 </Box>

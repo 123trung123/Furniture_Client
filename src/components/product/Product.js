@@ -25,41 +25,36 @@ export default function Product({ products }) {
   };
 
   return (
-    <Col
-      lg={4}
-      md={6}
-      sm={6}
-      xs={12}
-      className="newfont mb-4"
-      data-aos={products.id % 2 === 0 ? "flip-left" : "flip-right"}
-      data-aos-duration="1500"
-    >
-      <Card className="product-card h-100 d-flex flex-column">
-        <div className="product-image-container">
+    <Col lg={4} md={4} sm={6} xs={12} className="mb-3">
+      <Card className="product-card h-100 d-flex flex-column p-2" style={{ border: 'none', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
+        <div className="product-image-container" style={{ marginBottom: '10px' }}>
           <Link to={`/products/detail/${products.id}`}>
             {products.productImages?.length > 0 ? (
               <img
                 className="product-image"
                 src={`http://localhost:8080/api/furniture/getimages/${products.productImages[0].imageUrl}`} // Use the image name from your productImages
                 alt={products.name}
+                style={{ objectFit: 'contain' }}
               />
             ) : (
               <img
                 className="product-image"
                 src="/default-image.png" // Fallback image if no product images exist
                 alt={products.name}
+                style={{ objectFit: 'contain', height: '150px' }}
               />
             )}
           </Link>
         </div>
-        <CardBody>
-          <CardTitle tag="h6" className="product-title">
-            <h6>{products.name}</h6>
-            <h6>${products.price}</h6>
-            <h6>{products.category.name}</h6>
+        <CardBody style={{ padding: '10px' }}>
+          <CardTitle tag="h5" className="product-title" style={{ fontSize: '18px', fontWeight: 'bold' }}>
+            {products.name}
           </CardTitle>
-          <CardText>
-            <div className="rating">
+          <CardText style={{ margin: '5px 0' }}>
+            <span style={{ color: '#333', fontWeight: 'bold' }}>${products.price}</span>
+            <br />
+            <span style={{ color: '#888', fontSize: '12px' }}>{products.category.name}</span>
+            <div className="rating mt-1">
               {[1, 2, 3, 4, 5].map((value) => (
                 <span
                   key={value}
@@ -67,24 +62,26 @@ export default function Product({ products }) {
                   style={{ cursor: "pointer" }}
                 >
                   {value <= rating ? (
-                    <StarIcon style={{ color: "gold" }} />
+                    <StarIcon style={{ color: "gold", fontSize: '16px' }} />
                   ) : (
-                    <StarBorderIcon />
+                    <StarBorderIcon style={{ fontSize: '16px' }} />
                   )}
                 </span>
               ))}
             </div>
-            <p className="product-description">{products.description}</p>
+            <p className="product-description" style={{ fontSize: '16px', color: '#666', margin: '10px 0' }}>
+              {products.description}
+            </p>
           </CardText>
-          <div className="contain_button d-flex mt-2 justify-content-between">
-            <Link to={`/products/detail/${products.id}`} className="btn-chi-tiet">
+          <div className="contain_button d-flex justify-content-between align-items-center">
+            <Link to={`/products/detail/${products.id}`} className="btn-chi-tiet" style={{ fontSize: '12px', padding: '5px 10px' }}>
               Details
             </Link>
             <Button
               className="button-custom"
-              variant="contained"
               color="primary"
               onClick={() => handleAdd(products)}
+              style={{ fontSize: '16px', padding: '5px 10px' }}
             >
               Add
             </Button>

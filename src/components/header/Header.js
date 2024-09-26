@@ -62,7 +62,7 @@ export default function Header() {
       </NavItem>
 
       {/* Dropdown for Categories */}
-      <UncontrolledDropdown nav inNavbar>
+      {/* <UncontrolledDropdown nav inNavbar>
         <DropdownToggle nav caret className="header-item">
           Categories
         </DropdownToggle>
@@ -70,7 +70,7 @@ export default function Header() {
           <DropdownItem>Living Room</DropdownItem>
           <DropdownItem>Bedroom</DropdownItem>
         </DropdownMenu>
-      </UncontrolledDropdown>
+      </UncontrolledDropdown> */}
     </Nav>
 
     {/* Icons and Cart */}
