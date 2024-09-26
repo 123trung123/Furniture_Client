@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../redux/userSlice";
 import axios from "axios"; // Import axios for API requests
 import { Link, useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -56,20 +57,34 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrorMessage(""); // Reset error message on new submit
+    setErrorMessage(""); 
+  
     if (isRegister) {
       if (formData.password !== confirmPassword) {
         alert("Passwords do not match");
         return;
       }
-      registerUser();
+      registerUser(); 
     } else {
       try {
+     
         await dispatch(loginUser(formData)).unwrap();
-        navigate("/");
+  
+
+        Swal.fire({
+          title: 'Login Successful!',
+          text: 'You will be redirected shortly.',
+          icon: 'success',
+          timer: 2000, 
+          showConfirmButton: false,
+        });
+ 
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
       } catch (error) {
         console.error("Login error:", error);
-        setErrorMessage("Invalid username or password. Please try again."); // Set error message
+        setErrorMessage("Invalid username or password. Please try again."); 
       }
     }
   };
