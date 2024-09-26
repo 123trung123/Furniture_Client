@@ -16,12 +16,10 @@ export const loginUser = createAsyncThunk(
 
       // Decode the token to extract the user info
       const decodedToken = jwtDecode(token);
-      const userRole = decodedToken.role || 'USER'; // Assuming role exists in the token payload
-      const userName = decodedToken.sub; // Assuming `sub` contains the username
-
+      const userRole = decodedToken.role || 'USER';
+      const userName = decodedToken.sub; 
       // Store the role in local storage
       localStorage.setItem('role', userRole);
-
       // Return userInfo with both username and role
       return { username: userName, role: userRole };
     } catch (error) {
