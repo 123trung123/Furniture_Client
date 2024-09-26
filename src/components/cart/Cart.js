@@ -14,6 +14,7 @@ import { deleteFromCart, updateCartItem, setCartNull } from "../../redux/cartSli
 import Aos from "aos";
 import "aos/dist/aos.css";
 import Swal from "sweetalert2";
+import emailjs from "emailjs-com"; // Import EmailJS
 import "./cart.css";
 
 export default function Cart() {
@@ -50,13 +51,31 @@ export default function Cart() {
   };
 
   const handlePay = () => {
-    Swal.fire({
-      icon: "success",
-      title: "Cảm ơn bạn đã mua",
-      showConfirmButton: false,
-      timer: 1500,
-    });
-    dispatch(setCartNull([]));
+    const userEmail = "user@example.com";
+    const templateParams = {
+      email: userEmail,
+      message: `${userEmail} đã mua hàng! Tổng giá trị đơn hàng là: $${totalPrice.toFixed(2)}`,
+    };
+
+    emailjs.send('service_4sarhv9', 'template_ynu7qba', templateParams, 'P1jlrFA2eFxgkYfq_')
+      .then((response) => {
+        console.log('Email sent successfully:', response.status, response.text);
+        Swal.fire({
+          icon: "success",
+          title: "Cảm ơn bạn đã mua",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        dispatch(setCartNull([])); // Clear the cart
+      })
+      .catch((error) => {
+        console.error('Failed to send email:', error);
+        Swal.fire({
+          icon: "error",
+          title: "Có lỗi xảy ra",
+          text: "Không thể gửi email xác nhận!",
+        });
+      });
   };
 
   useEffect(() => {
