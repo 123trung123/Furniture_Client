@@ -9,13 +9,20 @@ import ProductPage from "./pages/productpage/ProductPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import SettingPage from "./pages/SettingPage/SettingPage";
 import UserList from "./components/Login/UserList";
+import ProtectedRoute from './components/ProtectedRoute';
+
 export default function App() {
   return (
     <div>
       <HashRouter>
         <Routes>
+          {/* <Route path="/student" element={<ProtectedRoute element={StudentPage} role="admin" />} />*/}
           <Route path="/" element={<Home />} />
-          <Route path="/cart" element={<CartPage />} />
+
+          {/* <Route path="/cart" element={<CartPage />} /> */}
+          
+          <Route path="/cart" element={<ProtectedRoute element={CartPage} allowedRoles={['USER']} />} />
+
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/aboutus" element={<AboutUsPage />} />
           <Route path="/products" element={<ProductPage />} />

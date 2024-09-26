@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axiosInstance from '../utils/axiosInstance';
+import { jwtDecode } from 'jwt-decode';
 
 // Async thunk for user login
 export const loginUser = createAsyncThunk(
@@ -7,8 +8,18 @@ export const loginUser = createAsyncThunk(
   async ({ username, password }, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.post('/api/user/login', { username, password });
+      const token = response.data.data;
+
       // Store token in local storage
-      localStorage.setItem('accessToken', response.data.data);
+      localStorage.setItem('accessToken', token);
+
+      // Decode the token to extract the user role
+      const decodedToken = jwtDecode(token);
+      const userRole = decodedToken.role || 'USER'; // Assume 'USER' role if not present
+
+      // Store the role in local storage
+      localStorage.setItem('role', userRole);
+
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -54,6 +65,7 @@ const userSlice = createSlice({
   reducers: {
     logout: (state) => {
       localStorage.removeItem('accessToken');
+      localStorage.removeItem('role');
       state.userInfo = null;
     },
   },
