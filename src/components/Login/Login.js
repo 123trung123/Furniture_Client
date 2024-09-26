@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react"; 
 import {
   Box,
   Button,
@@ -15,6 +15,7 @@ import "./Login.css";
 import Aos from "aos";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../redux/userSlice";
+import axios from "axios"; // Import axios for API requests
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -22,18 +23,51 @@ export default function Login() {
   const [confirmPassword, setConfirmPassword] = useState(""); // For registration
   const [isRegister, setIsRegister] = useState(false); // To toggle between login and register
   const [success, setSuccess] = useState("");
+  const [errorMessage, setErrorMessage] = useState(""); // New state for error messages
   const [formData, setFormData] = useState({ username: "", password: "" });
   const dispatch = useDispatch();
-  const { loading, error } = useSelector((state) => state.user);
+  const { loading } = useSelector((state) => state.user);
 
   useEffect(() => {
     Aos.init();
     window.scrollTo(0, 0);
   }, []);
 
-  const handleSubmit = (e) => {
+  const registerUser = async () => {
+    try {
+      const response = await axios.post("http://localhost:8080/api/user/register", {
+        username: formData.username,
+        password: formData.password,
+        role: { id: 2 }, // Assign role id
+      });
+
+      if (response.status === 201) {
+        setSuccess("Registration successful! Please log in.");
+        setIsRegister(false);
+      }
+    } catch (error) {
+      console.error("Error registering user:", error);
+      setErrorMessage("Registration failed. Please try again."); // Set error message
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(loginUser(formData));
+    setErrorMessage(""); // Reset error message on new submit
+    if (isRegister) {
+      if (formData.password !== confirmPassword) {
+        alert("Passwords do not match");
+        return;
+      }
+      registerUser();
+    } else {
+      try {
+        await dispatch(loginUser(formData)).unwrap(); // Unwrap the action to handle promise
+      } catch (error) {
+        console.error("Login error:", error);
+        setErrorMessage("Invalid username or password. Please try again."); // Set error message
+      }
+    }
   };
 
   return (
@@ -57,7 +91,7 @@ export default function Login() {
                       Welcome back
                     </Typography>
                     {success && <p className="text-success">{success}</p>}
-                    {error && <p className="text-danger">{error}</p>}
+                    {errorMessage && <p className="text-danger">{errorMessage}</p>} {/* Display error message */}
                   </Box>
                   <form onSubmit={handleSubmit}>
                     <FormControl fullWidth variant="outlined" margin="normal">
@@ -187,8 +221,7 @@ export default function Login() {
                           viewBox="0 0 24 24"
                         >
                           <path
-                            d="M12 2.04c-5.5 0-10 4.48-10 10 0 4.96 3.66 9.07 8.44 9.88v-6.99H7.91v-2.89h2.54V9.97c0-2.52 1.5-3.92 3.79-3.92 1.1 0 2.25.19 2.25.19v2.5h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.89h-2.34v6.99c4.78-.81 8.44-4.92 8.44-9.88 0-5.52-4.5-10-10-10z"
-                            fill="#3b5998"
+                            d="M12 2.04c-5.5 0-10 4.48-10 10 0 4.96 3.66 9.07 8.44 9.88v-6.99H7.91v-2.89h2.53v-2.1c0-2.51 1.47-3.9 3.72-3.9 1.08 0 2.22.19 2.22.19v2.43h-1.25c-1.22 0-1.6.76-1.6 1.55v1.87h2.72l-.43 2.89h-2.29v6.99C20.34 21.07 24 16.96 24 12c0-5.52-4.48-10-10-10z"
                           />
                         </svg>
                       }

@@ -94,10 +94,10 @@ export default function Footer() {
               </NavLink>
             </p>
             <p>
-              <i
+              {/* <i
                 className="fa-solid fa-circle-info"
                 style={{ marginRight: "0.5rem" }}
-              ></i>
+              ></i> */}
               {/* <NavLink to="/terms" className="footer-link" color="#603E31">
                 Terms of Service
               </NavLink> */}
@@ -109,6 +109,7 @@ export default function Footer() {
         <hr style={{ borderColor: "#555", margin: "2rem 0" }} />
 
         {/* Contact and Social Media */}
+        <Container style={{ maxWidth: "1100px", margin: "0 auto" }}>
         <Row className="justify-content-between">
           <Col>
             <Box sx={{ padding: "2rem", color: "#fff" }}>
@@ -118,15 +119,13 @@ export default function Footer() {
                     Thông Tin Liên Hệ
                   </Typography>
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12} sm={12}>
                   <Typography variant="body1" color="#603E31">
-                    Địa Chỉ: 135 
+                    Địa Chỉ: 135 Hai Bà Trưng Bến Nghé, Quận 1, Hồ Chí Minh
                   </Typography>
                   <Typography variant="body1" color="#603E31">
                     Thứ Hai - Thứ Sáu: 9am - 5pm
                   </Typography>
-                </Grid>
-                <Grid item xs={12} sm={6}>
                   <Typography variant="body1">
                     <NavLink
                       to="/contact"
@@ -137,6 +136,17 @@ export default function Footer() {
                     </NavLink>
                   </Typography>
                 </Grid>
+                {/* <Grid item xs={12} sm={3}> */}
+                  {/* <Typography variant="body1">
+                    <NavLink
+                      to="/contact"
+                      className="footer-link"
+                      style={{ textDecoration: "none", color: "#603E31" }} // Remove underline
+                    >
+                      Gửi Tin Nhắn
+                    </NavLink>
+                  </Typography> */}
+                {/* </Grid> */}
               </Grid>
             </Box>
           </Col>
@@ -163,7 +173,7 @@ export default function Footer() {
             </div>
           </Col>
         </Row>
-
+        </Container>
         {/* Footer bottom text */}
         <div
           style={{
