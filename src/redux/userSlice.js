@@ -2,7 +2,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axiosInstance from '../utils/axiosInstance';
 import { jwtDecode } from 'jwt-decode';
 
-// Async thunk for user login
+
+
 export const loginUser = createAsyncThunk(
   'user/login',
   async ({ username, password }, { rejectWithValue }) => {
@@ -13,19 +14,22 @@ export const loginUser = createAsyncThunk(
       // Store token in local storage
       localStorage.setItem('accessToken', token);
 
-      // Decode the token to extract the user role
+      // Decode the token to extract the user info
       const decodedToken = jwtDecode(token);
-      const userRole = decodedToken.role || 'USER'; // Assume 'USER' role if not present
+      const userRole = decodedToken.role || 'USER'; // Assuming role exists in the token payload
+      const userName = decodedToken.sub; // Assuming `sub` contains the username
 
       // Store the role in local storage
       localStorage.setItem('role', userRole);
 
-      return response.data;
+      // Return userInfo with both username and role
+      return { username: userName, role: userRole };
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
   }
 );
+
 
 // Async thunk for user registration
 export const registerUser = createAsyncThunk(
@@ -72,17 +76,17 @@ const userSlice = createSlice({
   extraReducers: (builder) => {
     // Handle login
     builder
-      .addCase(loginUser.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(loginUser.fulfilled, (state, action) => {
-        state.loading = false;
-        state.userInfo = action.payload;
-      })
-      .addCase(loginUser.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
+    .addCase(loginUser.pending, (state) => {
+      state.loading = true;
+    })
+    .addCase(loginUser.fulfilled, (state, action) => {
+      state.loading = false;
+      state.userInfo = action.payload; // This now contains both username and role
+    })
+    .addCase(loginUser.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    })
       // Handle register
       .addCase(registerUser.pending, (state) => {
         state.loading = true;

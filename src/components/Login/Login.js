@@ -16,7 +16,7 @@ import Aos from "aos";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../redux/userSlice";
 import axios from "axios"; // Import axios for API requests
-
+import { Link, useNavigate } from "react-router-dom";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,7 +27,7 @@ export default function Login() {
   const [formData, setFormData] = useState({ username: "", password: "" });
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.user);
-
+  const navigate = useNavigate();
   useEffect(() => {
     Aos.init();
     window.scrollTo(0, 0);
@@ -39,16 +39,19 @@ export default function Login() {
         username: formData.username,
         password: formData.password,
         role: { id: 2 }, // Assign role id
+        
       });
 
-      if (response.status === 201) {
+      if (response.status === 200) {
         setSuccess("Registration successful! Please log in.");
         setIsRegister(false);
+      
       }
     } catch (error) {
       console.error("Error registering user:", error);
       setErrorMessage("Registration failed. Please try again."); // Set error message
     }
+    console.log(isRegister);
   };
 
   const handleSubmit = async (e) => {
@@ -62,7 +65,8 @@ export default function Login() {
       registerUser();
     } else {
       try {
-        await dispatch(loginUser(formData)).unwrap(); // Unwrap the action to handle promise
+        await dispatch(loginUser(formData)).unwrap();
+        navigate("/");
       } catch (error) {
         console.error("Login error:", error);
         setErrorMessage("Invalid username or password. Please try again."); // Set error message

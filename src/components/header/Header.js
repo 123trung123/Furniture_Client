@@ -15,7 +15,7 @@ import {
 } from "reactstrap";
 import SearchIcon from "@mui/icons-material/Search";
 import TextField from "@mui/material/TextField";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../resources/logo.png";
 import "./header.css";
 import { IconButton } from "@mui/material";
@@ -34,9 +34,10 @@ export default function Header() {
   const [hover, setHover] = useState(false); // State to manage hover effect
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.user); // Get userInfo from Redux state
-
+  const navigate = useNavigate();
   const handleLogout = () => {
-    dispatch(logout()); // Dispatch logout action
+    dispatch(logout()); 
+    navigate("/");
   };
 
   return (
@@ -102,47 +103,33 @@ export default function Header() {
                 <i className="fa-solid fa-gear"></i>
               </Link> */}
               <div className="header-icons">
-                {/* <Dropdown isOpen={searchOpen} toggle={toggleSearch} inNavbar>
-                  <DropdownToggle className="btn_general better_button header-icon">
-                    <i className="fa-solid fa-magnifying-glass"></i>
-                  </DropdownToggle>
-                  <DropdownMenu right>
-                    <div className="px-1">
-                      <input
-                        type="text"
-                        placeholder="Search products..."
-                        className="form-control"
-                      />
-                    </div>
-                  </DropdownMenu>
-                </Dropdown> */}
-                <div
-                  className="header-icon-wrapper"
-                  onMouseEnter={() => setHover(true)}
-                  onMouseLeave={() => setHover(false)}
-                >
-                  <DropdownToggle className="btn_general better_button header-icon">
-                    <i className="fa-solid fa-gear"></i>
-                  </DropdownToggle>
+        <div
+          className="header-icon-wrapper"
+          onMouseEnter={() => setHover(true)}
+          onMouseLeave={() => setHover(false)}
+        >
+          <div className="header-icon">
+            <i className="fa-solid fa-gear"></i>
+          </div>
 
-                  {hover && (
-                    <div className="user-info-dropdown">
-                      {userInfo ? (
-                        <div className="user-info">
-                          <p>{userInfo.username}</p>
-                          <button className="logout-btn" onClick={handleLogout}>
-                            Logout
-                          </button>
-                        </div>
-                      ) : (
-                        <Link to="/login" className="header-icon">
-                          <i className="fa-solid fa-user"></i>
-                        </Link>
-                      )}
-                    </div>
-                  )}
+          {hover && (
+            <div className="user-info-dropdown">
+              {userInfo ? (
+                <div className="user-info">
+                  <p>{userInfo.username}</p> {/* Display username here */}
+                  <button className="logout-btn" onClick={handleLogout}>
+                    Logout
+                  </button>
                 </div>
-              </div>
+              ) : (
+                <Link to="/login" className="header-icon">
+                  <i className="fa-solid fa-user"></i>
+                </Link>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
               <Link to="/cart" className="header-icon">
                 <i className="fa-solid fa-cart-shopping"></i>
               </Link>
