@@ -10,6 +10,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import SettingPage from "./pages/SettingPage/SettingPage";
 import UserList from "./components/Login/UserList";
 import ProtectedRoute from './components/ProtectedRoute';
+import Blogpage from "./pages/BlogPage/Blogpage";
 
 export default function App() {
   return (
@@ -33,6 +34,7 @@ export default function App() {
           <Route path="/listuser" element={<UserList />} />
           <Route path="/user" element={<SettingPage />} />
           <Route path="/reviews" element={<Home/>} />
+          <Route path="/blog" element={<Blogpage />} />
         </Routes>
       </HashRouter>
     </div>

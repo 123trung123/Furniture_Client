@@ -1,70 +1,84 @@
-.product-card {
-  background-repeat: no-repeat;
-  background-size: contain;
-  padding: 0 !important;
-  border-radius: 16px;
-}
-.product-card-img {
-  background-repeat: no-repeat;
-  background-size: auto;
-  width: 100%;
-  height: auto;
-}
+/* products.css */
+
+
+
 .filter-col {
-  padding: 0 !important;
+  margin-bottom: 20px;
+  justify-content: center;
+  display: flex;
 }
+
 .filter-container {
-  box-sizing: border-box;
-  width: 1320px;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: none; /* Remove card border */
+  background-color: transparent; /* Make card background transparent */
 }
-.filter-input,
-.filter-select {
+
+.filter-input {
   width: 100%;
-  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  text-align: center;
+  padding: 10px; /* Adjust padding for better appearance */
 }
-.banner_container{
-  overflow: hidden;
+
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: 16px;
+  margin-bottom: 20px;
 }
-.frontage-bold {
-  font-family: 'Frontage', sans-serif;
+
+.filter-button {
+  cursor: pointer;
+  padding: 10px 20px;
+  border: none;
+  background: none;
+  color: #444;
   font-weight: bold;
-  font-size: 50px;
-  text-align: center; 
-  letter-spacing: 2px; 
-}
-.banner_container {
   position: relative;
 }
 
-.product-card-video {
-  width: 100%; /* Adjust as necessary */
-  height: auto; /* Maintain aspect ratio */
+.filter-button:hover,
+.filter-button.active {
+  color: #f8b400; /* Change color for active and hover state */
 }
 
-.Title {
-  font-size: 2rem; /* Adjust size as needed */
+.filter-button::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: #f8b400; /* Yellow underline */
+  transition: width 0.3s;
+}
+
+.filter-button.active::after {
+  width: 50%; /* Underline width for active state */
+}
+
+/* Header styles */
+.new-collection-header {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  position: relative;
   text-align: center;
 }
 
-.innerTitle {
-  /* Any additional styles for inner title */
-}
-
-
-.filter-col {
-  display: flex;
-  justify-content: center; /* Căn giữa nội dung theo chiều ngang */
-  margin-top: 20px; /* Khoảng cách phía trên */
-}
-
-.filter-container {
-  width: 100%; /* Đặt chiều rộng là 100% để có thể căn giữa */
-  max-width: 1320px; /* Chiều rộng tối đa */
-  margin: 1rem auto; /* Căn giữa với khoảng cách trên và dưới */
-}
-
-@media (max-width: 768px) {
-  .filter-container {
-    width: 90%; /* Chiều rộng 90% trên màn hình nhỏ */
-  }
+.new-collection-header::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background: #00bcd4; /* Blue underline */
 }

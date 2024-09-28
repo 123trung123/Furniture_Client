@@ -1,130 +1,100 @@
-.newfont{
-  font-size: 16px;
-  font-family: "Obitron", sans-serif !important;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  font-variation-settings: "wdth" 100;
-}
+/* product.css */
+
 .product-card {
   border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
   transition: transform 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
+
 .product-card:hover {
-  transform: scale(1.03);
-  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+  transform: scale(1.02);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
+
 .product-image-container {
+  width: 100%;
+  height: 250px; /* Fixed height for all images */
   overflow: hidden;
-  border-bottom: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
 }
+
 .product-image {
   width: 100%;
-  height: auto;
-  object-fit: cover;
-  transition: 1s;
+  height: 100%;
+  object-fit: cover; /* Ensures all images cover the container while maintaining aspect ratio */
+  transition: transform 0.3s ease;
 }
-.product-image:hover{
-  scale: 1.05;
-  box-shadow: rgba(50, 50, 93, 0.35) 0px 40px 70px -22px inset, rgba(0, 0, 0, 0.5) 0px 28px 46px -28px inset;
+
+.product-image:hover {
+  transform: scale(1.05);
 }
+
+.product-details {
+  padding: 15px;
+  text-align: center; /* Center-align the text */
+}
+
 .product-title {
+  font-size: 18px;
+  font-weight: bold;
   margin-bottom: 10px;
 }
-.view-details-button {
-  text-decoration: none;
-  color: #cabf8c;
+
+.product-info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 15px;
 }
-.view-details-button:hover {
-  text-decoration: underline;
+
+.product-price {
+  color: rgb(124, 121, 109);
+  font-size: 16px;
+  font-weight: bold;
 }
-.product-description {
-  margin-top: 10px;
-  line-height: 1.5;
+
+.product-category {
+  color: #555;
+  font-size: 14px;
 }
-.Card_custom {
-  transition: 0.3s;
-  border: none;
-  overflow: hidden;
-  position: relative;
-  text-transform: capitalize;
+
+.rating {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px; /* Space between rating and action buttons */
 }
-.Card_custom:hover {
-  transform: translateY(-2%);
-  box-shadow: rgba(136, 165, 191, 0.8) 6px 2px 26px 0px,
-    rgba(255, 255, 255, 0.8) -6px -2px 26px 0px;
+
+.star-icon {
+  color: #ffcc00; /* Gold color for the stars */
 }
-.btn-link{
-    text-decoration: none !important;
-    color: #333;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+
+.action-buttons {
+  display: flex;
+  justify-content: space-around; /* Space buttons evenly */
+  align-items: center;
+  margin-top: 15px;
 }
-.btn_general {
-  --color: #626262 !important;
-  color: black !important   ;
-  --color2: rgb(255, 255, 255);
-  transition: 0.2s !important;
-  position: relative;
-  overflow: hidden;
+
+.btn-details, .btn-add {
+  font-size: 14px;
+  padding: 8px 15px;
+  border-radius: 4px;
+  border: 1px solid #a8a287;
+  background-color: #e2dcc3;
+  color: #020202;
   cursor: pointer;
-  z-index: 1;
-  font-weight: 300;
-  font-size: 17px;
-  text-transform: uppercase;
-  backdrop-filter: blur(5px);
-  background-color: transparent !important;
-}
-.btn_general::after,
-.btn_general::before {
-  content: "";
-  display: block;
-  height: 100%;
-  width: 100%;
-  transform: skew(90deg) translate(-50%, -50%);
-  position: absolute;
-  inset: 50%;
-  left: 25%;
-  z-index: -1;
-  transition: 0.3s ease-out;
-  background-color: var(--color);
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.btn_general::before {
-  top: -50%;
-  left: -25%;
-  transform: skew(90deg) rotate(180deg) translate(-50%, -50%);
-}
-
-.btn:hover::before {
-  transform: skew(45deg) rotate(180deg) translate(-50%, -50%);
-}
-
-.btn:hover::after {
-  transform: skew(45deg) translate(-50%, -50%);
-}
-
-.btn:hover {
-  color: var(--color2) !important;
-}
-
-.btn:active {
-  filter: brightness(0.7);
-  transform: scale(0.98);
-}
-.contain_button{
-  width: 100%;
-}
-.button-custom {
-  background-color: bisque !important;
-  color: black !important; /* Optional: Change text color to make it stand out */
-  border: none;
-  /* transition: background-color 0.3s ease; */
-  transition: 0.3s;
-}
-
-.button-custom:hover {
-  color: rgb(82, 82, 82) !important;
-  scale: 1.05;
+.btn-details:hover, .btn-add:hover {
+  background-color: #9c9c9c;
 }

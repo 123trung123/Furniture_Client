@@ -1,47 +1,50 @@
-.contain{
+.contain {
   position: relative;
   overflow: hidden;
   transition: 0.3s ease-in;
   min-height: 275px;
+  border-radius: 0; /* Changed to 0 for square corners */
 }
-.contain:hover{
+
+.contain:hover {
   transform: translateY(-10px);
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
-.image-container {
-  width: 100%;
-  height: 100px;
-  z-index: 10;
+
+.image-link {
+  display: block;
 }
+
 .image_carousel {
-  object-fit: contain; 
-  position: absolute;
-  height: 70%;
-  width: 70%;
-  bottom: 10px;
-  right: 0;
+  object-fit: cover;
+  width: 100%;
+  height: 200px;
+  margin-bottom: 10px;
 }
+
 .btn-chi-tiet2 {
   background: #fff;
   font-family: "Orbitron", sans-serif;
   border: none;
-  padding-top: 10px;
-  padding-bottom:10px ;
-  padding: auto;
+  padding: 10px 20px;
   display: inline-block;
   font-size: 15px;
   font-weight: 600;
-  width: 120px;
   text-transform: uppercase;
   text-align: center;
   cursor: pointer;
   transform: skew(-21deg);
   text-decoration: none;
   color: #333;
+  transition: background 0.3s, color 0.3s;
 }
+
 .btn-chi-tiet2:hover {
   color: white;
+  background: #333;
 }
+
 .btn-chi-tiet2 span {
   display: inline-block;
   transform: skew(21deg);
@@ -63,8 +66,75 @@
   z-index: -1;
   transition: all 0.5s;
 }
+
 .btn-chi-tiet2:hover::before {
   left: 0;
   right: 0;
   opacity: 1;
+}
+
+.category-button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.category-name {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.card-title {
+  font-size: 1.2rem;
+}
+
+.card-subtitle {
+  font-size: 1rem;
+}
+
+.card-text {
+  line-height: 1.5;
+}
+
+.add-to-cart-icon {
+  cursor: pointer;
+  font-size: 24px;
+  color: #333;
+  text-align: center;
+  transition: color 0.3s;
+}
+
+.add-to-cart-icon:hover {
+  color: rgb(97, 121, 146);
+}
+
+.product-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.price {
+  font-size: 1rem;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.add-to-cart-icon {
+  cursor: pointer;
+  font-size: 24px;
+  color: #333;
+  text-align: center;
+  margin-left: 10px;
+  transition: color 0.3s;
+  border: 1px solid #ccc;
+  padding: 5px;
+}
+
+.add-to-cart-icon:hover {
+  color: #bec297;
+  border-color: #bec297;
 }

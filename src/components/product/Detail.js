@@ -96,8 +96,8 @@ export default function Detail() {
 
               <p className="product-description">{pro.description || "No description available"}</p>
               <h5 className="product-price">
-                ${pro.price}{" "}
-                {pro.originalPrice && <span className="original-price">${pro.originalPrice}</span>}
+              ₫{pro.price}{" "}
+                {pro.originalPrice && <span className="original-price">₫{pro.originalPrice}</span>}
               </h5>
               <p className="product-category">Category: {pro.category?.name || "Unknown"}</p>
               <Button className="button-custom" onClick={() => handleAdd(pro)}>

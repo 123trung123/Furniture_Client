@@ -2,43 +2,36 @@ import React, { useState } from "react";
 import {
   Collapse,
   Navbar,
-  NavbarToggler,
   Nav,
   NavItem,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  NavbarText,
   Container,
-  Dropdown,
 } from "reactstrap";
-import SearchIcon from "@mui/icons-material/Search";
-import TextField from "@mui/material/TextField";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../resources/logo.png";
 import "./header.css";
 import { IconButton } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/userSlice";
-export default function Header() {
-  const [isOpen, setIsOpen] = useState(false);
+import MenuIcon from "@mui/icons-material/Menu"; // Menu icon for hamburger menu
+import HomeIcon from "@mui/icons-material/Home";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import ContactMailIcon from "@mui/icons-material/ContactMail";
+import LocalMallIcon from "@mui/icons-material/LocalMall";
+import InfoIcon from "@mui/icons-material/Info";
 
-  const toggle = () => setIsOpen(!isOpen);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const toggleSearch = () => setSearchOpen(!searchOpen);
-  const [searchText, setSearchText] = useState("");
-  const handleSearchClick = () => {
-    setSearchOpen(true);
-  };
-  const [hover, setHover] = useState(false); // State to manage hover effect
+export default function Header() {
+  const [sidebarOpen, setSidebarOpen] = useState(false); // Sidebar state
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.user); // Get userInfo from Redux state
   const navigate = useNavigate();
+
   const handleLogout = () => {
-    dispatch(logout()); 
+    dispatch(logout());
     navigate("/");
   };
+
+  // Toggle sidebar
+  const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
   return (
     <div className="header">
@@ -49,10 +42,8 @@ export default function Header() {
             <img className="logo" src={logo} alt="Furniture Corner" />
           </Link>
 
-          <NavbarToggler onClick={toggle} />
-
-          {/* Navigation Links */}
-          <Collapse isOpen={isOpen} navbar>
+          {/* Main Navigation Links */}
+          <Collapse isOpen={true} navbar>
             <Nav className="navbar-nav m-auto align-items-center" navbar>
               <NavItem>
                 <Link to="/" className="header-item">
@@ -69,76 +60,90 @@ export default function Header() {
                   Contact
                 </Link>
               </NavItem>
-
-              {/* Dropdown for Categories */}
-              {/* <UncontrolledDropdown nav inNavbar>
-        <DropdownToggle nav caret className="header-item">
-          Categories
-        </DropdownToggle>
-        <DropdownMenu right>
-          <DropdownItem>Living Room</DropdownItem>
-          <DropdownItem>Bedroom</DropdownItem>
-        </DropdownMenu>
-      </UncontrolledDropdown> */}
-            </Nav>
-
-            {/* Icons and Cart */}
-            <div className="header-icons">
-              {/* {searchOpen ? (
-        <TextField
-          variant="outlined"
-          placeholder="Tìm kiếm sản phẩm..."
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
-          onBlur={() => setSearchOpen(false)}
-          autoFocus
-          className={`search-animation ${searchOpen ? 'search-open' : ''}`} // Thêm class ở đây
-        />
-      ) : (
-        <IconButton onClick={toggleSearch} className="header-icon">
-          <SearchIcon />
-        </IconButton>
-      )} */}
-              {/* <Link to="/user" className="header-icon">
-                <i className="fa-solid fa-gear"></i>
-              </Link> */}
-              <div className="header-icons">
-        <div
-          className="header-icon-wrapper"
-          onMouseEnter={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
-        >
-          <div className="header-icon">
-            <i className="fa-solid fa-gear"></i>
-          </div>
-
-          {hover && (
-            <div className="user-info-dropdown">
-              {userInfo ? (
-                <div className="user-info">
-                  <p>{userInfo.username}</p> {/* Display username here */}
-                  <button className="logout-btn" onClick={handleLogout}>
-                    Logout
-                  </button>
-                </div>
-              ) : (
-                <Link to="/login" className="header-icon">
-                  <i className="fa-solid fa-user"></i>
+              <NavItem>
+                <Link to="/blog" className="header-item">
+                  Blogs
                 </Link>
-              )}
-            </div>
-          )}
-        </div>
-      </div>
+              </NavItem>
+            </Nav>
+          </Collapse>
+
+          {/* Icons and Hamburger Menu */}
+          <div className="header-right">
+            {/* Icons */}
+            <div className="header-icons">
               <Link to="/cart" className="header-icon">
                 <i className="fa-solid fa-cart-shopping"></i>
               </Link>
+              <Link to="/login" className="header-icon">
+                <i className="fa-solid fa-user"></i>
+              </Link>
             </div>
 
-            {/* <NavbarText className="total-text">Total: $0.00</NavbarText> */}
-          </Collapse>
+            {/* Hamburger Menu Icon */}
+            <IconButton className="hamburger-menu" onClick={toggleSidebar}>
+              <MenuIcon fontSize="large" />
+            </IconButton>
+          </div>
         </Navbar>
       </Container>
+
+      {/* Sidebar */}
+      <div className={`sidebar ${sidebarOpen ? "open" : ""}`}>
+        <div className="sidebar-content">
+          <ul className="sidebar-menu">
+            <li>
+              <Link to="/" className="sidebar-item" onClick={toggleSidebar}>
+                <HomeIcon />
+                <span>Home</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/products" className="sidebar-item" onClick={toggleSidebar}>
+                <LocalMallIcon />
+                <span>Products</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/blog" className="sidebar-item" onClick={toggleSidebar}>
+                <InfoIcon />
+                <span>Blogs</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/contact" className="sidebar-item" onClick={toggleSidebar}>
+                <ContactMailIcon />
+                <span>Contact</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/cart" className="sidebar-item" onClick={toggleSidebar}>
+                <ShoppingCartIcon />
+                <span>Cart</span>
+              </Link>
+            </li>
+            <li>
+              {userInfo ? (
+                <div className="sidebar-item" onClick={() => {
+                  handleLogout();
+                  toggleSidebar();
+                }}>
+                  <i className="fa-solid fa-sign-out"></i>
+                  <span>Logout</span>
+                </div>
+              ) : (
+                <Link to="/login" className="sidebar-item" onClick={toggleSidebar}>
+                  <i className="fa-solid fa-user"></i>
+                  <span>Login</span>
+                </Link>
+              )}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      {/* Overlay */}
+      {sidebarOpen && <div className="overlay" onClick={toggleSidebar}></div>}
 
       {/* Scroll to Top Button */}
       <button

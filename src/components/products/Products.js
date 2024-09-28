@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Product from "../product/Product";
-import { Container, Row, Col, Card, CardBody } from "reactstrap";
+import { Container, Row, Col, Card, CardBody, Input } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { getList } from "../../redux/shopSlice";
 import Aos from "aos";
@@ -12,6 +12,7 @@ export default function Products() {
   const { products, totalPages } = useSelector((state) => state.shop);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
+  const [selectedCategory, setSelectedCategory] = useState("");
   const productsPerPage = 6; // 6 products per page
 
   // Fetch products with pagination
@@ -66,9 +67,10 @@ export default function Products() {
     handleFilter({ name: e.target.value, category });
   };
 
-  const handleCategoryChange = (e) => {
-    setCategory(e.target.value);
-    handleFilter({ name, category: e.target.value });
+  const handleCategoryChange = (newCategory) => {
+    setCategory(newCategory);
+    setSelectedCategory(newCategory);
+    handleFilter({ name, category: newCategory });
   };
 
   // Calculate the current products to display based on currentPage and productsPerPage
@@ -78,60 +80,88 @@ export default function Products() {
   );
 
   return (
-    <Container style={{ marginTop: "15px" }}>
-      <Row>
-        <Col style={{ margin: "0 auto", padding: 0 }}>
-          <Row className="filter-col">
-            <Col>
-              <Card className="filter-container">
-                <CardBody>
-                  <input
-                    type="text"
-                    placeholder="Filter by name"
-                    value={name}
-                    onChange={handleNameChange}
-                    className="filter-input p-1 py-3"
-                  />
-                  <div style={{ margin: "1rem 0" }}></div>
-                  <select
-                    value={category}
-                    onChange={handleCategoryChange}
-                    className="filter-select p-1 py-3"
-                  >
-                    <option value="">All</option>
-                    <option value="Bàn">Bàn</option>
-                    <option value="Ghế">Ghế</option>
-                    <option value="Giường">Giường</option>
-                    <option value="Sofa">Sofa</option>
-                    <option value="Tủ">Tủ</option>
-                  </select>
-                </CardBody>
-              </Card>
-            </Col>
-          </Row>
+    <Container className="products-container">
+      <div className="new-collection-header">Shop</div>
 
-          <Row lg={10} md={10} sm={10} xs={12}>
-            {currentProducts.map((item, index) => (
-              <Product
-                key={index}
-                products={item}
-                onAddToCart={handleAddToCart}
-              />
-            ))}
-          </Row>
+      {/* Search bar */}
+      <div className="filter-col">
+        <Input
+          className="filter-input"
+          type="text"
+          placeholder="Search for products..."
+          value={name}
+          onChange={handleNameChange}
+        />
+      </div>
 
-          <Row style={{ marginTop: "20px", justifyContent: "center" }}>
-            <Col style={{ display: "flex", justifyContent: "center" }}>
-              <Pagination
-                count={Math.ceil(filteredProducts.length / productsPerPage)}
-                page={currentPage + 1}
-                onChange={(event, value) => setCurrentPage(value - 1)}
-                shape="rounded"
-                variant="outlined"
-                color="primary"
-              />
-            </Col>
-          </Row>
+      {/* Category filter buttons */}
+      <div className="filter-buttons">
+        <div
+          className={`filter-button ${
+            selectedCategory === "" ? "active" : ""
+          }`}
+          onClick={() => handleCategoryChange("")}
+        >
+          All
+        </div>
+        <div
+          className={`filter-button ${
+            selectedCategory === "Bàn" ? "active" : ""
+          }`}
+          onClick={() => handleCategoryChange("Bàn")}
+        >
+          Chair
+        </div>
+        <div
+          className={`filter-button ${
+            selectedCategory === "Ghế" ? "active" : ""
+          }`}
+          onClick={() => handleCategoryChange("Ghế")}
+        >
+          Decoration
+        </div>
+        <div
+          className={`filter-button ${
+            selectedCategory === "Giường" ? "active" : ""
+          }`}
+          onClick={() => handleCategoryChange("Giường")}
+        >
+          Essential
+        </div>
+        <div
+          className={`filter-button ${
+            selectedCategory === "Sofa" ? "active" : ""
+          }`}
+          onClick={() => handleCategoryChange("Sofa")}
+        >
+          Lamp
+        </div>
+        <div
+          className={`filter-button ${
+            selectedCategory === "Tủ" ? "active" : ""
+          }`}
+          onClick={() => handleCategoryChange("Tủ")}
+        >
+          Sofar
+        </div>
+      </div>
+
+      <Row lg={10} md={10} sm={10} xs={12}>
+        {currentProducts.map((item, index) => (
+          <Product key={index} products={item} onAddToCart={handleAddToCart} />
+        ))}
+      </Row>
+
+      <Row style={{ marginTop: "20px", justifyContent: "center" }}>
+        <Col style={{ display: "flex", justifyContent: "center" }}>
+          <Pagination
+            count={Math.ceil(filteredProducts.length / productsPerPage)}
+            page={currentPage + 1}
+            onChange={(event, value) => setCurrentPage(value - 1)}
+            shape="rounded"
+            variant="outlined"
+            color="primary"
+          />
         </Col>
       </Row>
     </Container>
