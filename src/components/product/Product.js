@@ -24,6 +24,10 @@ export default function Product({ products }) {
     dispatch(addToCart(product));
   };
 
+  // Check if product is active before rendering
+  if (products.is_active === 0) {
+    return null;
+  }
   return (
     <Col lg={4} md={6} sm={12} className="mb-3">
       <Card className="product-card h-100 d-flex flex-column">
@@ -59,16 +63,7 @@ export default function Product({ products }) {
             </CardText>
           </div>
           {/* Product Rating */}
-          
-          {/* Action Buttons */}
-          <div className="action-buttons">
-            <Link
-              to={`/products/detail/${products.id}`}
-              className="btn btn-details"
-            >
-              Details
-            </Link>
-            <div className="rating">
+          <div className="rating">
             {[1, 2, 3, 4, 5].map((value) => (
               <span
                 key={value}
@@ -83,10 +78,15 @@ export default function Product({ products }) {
               </span>
             ))}
           </div>
-            <Button
-              className="btn btn-add"
-              onClick={() => handleAdd(products)}
+          {/* Action Buttons */}
+          <div className="action-buttons">
+            <Link
+              to={`/products/detail/${products.id}`}
+              className="btn btn-details"
             >
+              Details
+            </Link>
+            <Button className="btn btn-add" onClick={() => handleAdd(products)}>
               Add to Cart
             </Button>
           </div>

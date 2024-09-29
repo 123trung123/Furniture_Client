@@ -110,7 +110,7 @@ export default function Products() {
           }`}
           onClick={() => handleCategoryChange("Bàn")}
         >
-          Chair
+          Bàn
         </div>
         <div
           className={`filter-button ${
@@ -118,7 +118,7 @@ export default function Products() {
           }`}
           onClick={() => handleCategoryChange("Ghế")}
         >
-          Decoration
+          Ghế
         </div>
         <div
           className={`filter-button ${
@@ -126,7 +126,7 @@ export default function Products() {
           }`}
           onClick={() => handleCategoryChange("Giường")}
         >
-          Essential
+          Giường
         </div>
         <div
           className={`filter-button ${
@@ -134,7 +134,7 @@ export default function Products() {
           }`}
           onClick={() => handleCategoryChange("Sofa")}
         >
-          Lamp
+          Sofa
         </div>
         <div
           className={`filter-button ${
@@ -142,7 +142,7 @@ export default function Products() {
           }`}
           onClick={() => handleCategoryChange("Tủ")}
         >
-          Sofar
+          Tủ
         </div>
       </div>
 

@@ -6,47 +6,25 @@ const BASE_URL = "http://localhost:8080/api/furniture";
 
 export const getList = createAsyncThunk("shop/getList", async (_, thunkAPI) => {
   try {
-    const response = await axiosInstance.get("/api/furniture/"); // This will fetch all products without pagination
-    return response.data.data; // Assuming response structure contains data field
+    const response = await axiosInstance.get("/api/furniture/"); 
+    return response.data.data; 
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response.data);
   }
 });
-// export const getList = createAsyncThunk("shop/getList", async (_, thunkAPI) => {
-//   try {
-//     const response = await axios.get(`${BASE_URL}/`); // This will fetch all products without pagination
-//     return response.data.data; // Assuming response structure contains data field
-//   } catch (error) {
-//     return thunkAPI.rejectWithValue(error.response.data);
-//   }
-// });
-// Fetch all products (paginated)
+
 export const getAllProducts = createAsyncThunk(
   "shop/getAllProducts",
   async ({ page, size }, thunkAPI) => {
     const url = `/api/furniture/products?page=${page}&size=${size}`;
     try {
       const response = await axiosInstance.get(url);
-      return response.data.data; // Assuming response structure contains data field
+      return response.data.data; 
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
     }
   }
 );
-
-// export const getAllProducts = createAsyncThunk(
-//   "shop/getAllProducts",
-//   async ({ page, size }, thunkAPI) => {
-//     const url = `${BASE_URL}/products?page=${page}&size=${size}`;
-//     try {
-//       const response = await axios.get(url);
-//       return response.data.data; // Assuming response structure contains data field
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.response.data);
-//     }
-//   }
-// );
-// Add a new product
 
 export const addProduct = createAsyncThunk(
   "shop/addProduct",
@@ -59,14 +37,14 @@ export const addProduct = createAsyncThunk(
     }
   }
 );
-// Get images for a specific product by ID
+
 export const getProductImages = createAsyncThunk(
   "shop/getProductImages",
   async (id, thunkAPI) => {
-    const url = `${BASE_URL}/images/${id}`; // Adjust the endpoint as needed
+    const url = `${BASE_URL}/images/${id}`; 
     try {
       const response = await axios.get(url);
-      return response.data.data; // Assuming response structure contains data field
+      return response.data.data; 
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
     }
@@ -75,11 +53,11 @@ export const getProductImages = createAsyncThunk(
 export const getProductImagesbyName = createAsyncThunk(
   "shop/getProductImagesByName",
   async (I, thunkAPI) => {
-    const url = `${BASE_URL}/getimages/${I}`; // Ensure this is correct
+    const url = `${BASE_URL}/getimages/${I}`;
     try {
       const response = await axios.get(url);
-      console.log("Response from API:", response.data); // Log the entire response
-      return response.data.data; // Ensure this structure is correct
+      console.log("Response from API:", response.data);
+      return response.data.data; 
     } catch (error) {
       console.error("Error fetching images:", error.response.data);
       return thunkAPI.rejectWithValue(error.response.data);

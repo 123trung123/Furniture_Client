@@ -1,33 +1,34 @@
-import React from 'react';
-import { Container, Row, Col, Card, CardBody, CardTitle, CardText } from 'reactstrap';
+import React from 'react'; 
+import { Container, Row, Col } from 'reactstrap';
 import './feature.css';
 import img1 from '../assets/home1-banner-3.png';
 import img2 from '../assets/home1-banner-4.jpg';
 import FeatureCard from './FeatureCard';
 
-const featureData = [
+const dataTinhNang = [
   {
-    title: 'Feature One',
-    description: 'Description of feature one and how it benefits the user.',
+    title: 'Tính năng 1',
+    description: 'Mô tả về tính năng 1 và lợi ích mà nó mang lại cho người dùng.',
     img: img1,
   },  
   {
-    title: 'Feature Two',
-    description: 'Description of feature two and how it benefits the user.',
+    title: 'Tính năng 2',
+    description: 'Mô tả về tính năng 2 và lợi ích mà nó mang lại cho người dùng.',
     img: img2,
   },
 ];
-export default function Features() {
+
+export default function TinhNang() {
   return (
     <div style={{ padding: '2rem 0', backgroundColor: '#f5f5f5' }}>
       <Container>
         <Row>
-          {featureData.map((feature, index) => (
+          {dataTinhNang.map((tinhNang, index) => (
             <Col xs={12} md={6} key={index} className="mb-4">
               <FeatureCard
-                title={feature.title}
-                description={feature.description}
-                img={feature.img}
+                title={tinhNang.title}
+                description={tinhNang.description}
+                img={tinhNang.img}
               />
             </Col>
           ))}
